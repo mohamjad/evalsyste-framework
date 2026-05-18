@@ -383,3 +383,14 @@ class ModelTrainer:
         torch.save({
             'model_state_dict': self.model.state_dict(),
             'optimizer_state_dict': self.optimizer.state_dict(),
+            'best_loss': self.best_loss,
+            'training_history': self.training_history
+        }, path)
+    
+    def load_model(self, path: str):
+        """Load model checkpoint."""
+        checkpoint = torch.load(path, map_location=self.device)
+        self.model.load_state_dict(checkpoint['model_state_dict'])
+        self.optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+        self.best_loss = checkpoint['best_loss']
+        self.training_history = checkpoint['training_history']

@@ -1010,3 +1010,14 @@ class AIStabilityFramework:
             "operation_id": operation_id or f"op_{self.operation_count}",
             "operation_description": operation_description,
             "signal_quality": signal_quality,
+            "metrics": {
+                "coherence": coherence,
+                "clarity": clarity,
+                "redundancy": redundancy,
+                "context_efficiency": efficiency,
+                "contradictions_count": len(self.coherence_tracker.contradictions),
+                "statements_count": len(self.coherence_tracker.statements),
+            },
+            "thresholds_passed": {
+                "coherence": coherence_passed,
+                "clarity": clarity_passed,

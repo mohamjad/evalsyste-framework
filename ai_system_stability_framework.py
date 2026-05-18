@@ -273,3 +273,14 @@ class CoherenceTracker:
     
     def calculate_coherence_score(self) -> float:
         """
+        Calculate coherence score with complete transparency.
+        
+        Formula:
+        coherence = 1.0 - (contradictions / total_possible_pairs)
+        
+        Where:
+        - total_possible_pairs = n*(n-1)/2 for n statements
+        - contradictions = number of logical conflicts detected
+        
+        Interpretation:
+        - 1.0 = Perfect (no contradictions)

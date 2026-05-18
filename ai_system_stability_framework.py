@@ -999,3 +999,14 @@ class AIStabilityFramework:
         # Capture snapshot
         self.context_analyzer.capture_snapshot(
             context_size=context_size,
+            coherence=coherence,
+            operations_count=self.operation_count,
+            statements_count=len(self.coherence_tracker.statements),
+            error_rate=0.0  # Could track actual errors if available
+        )
+        
+        # Build result
+        result = {
+            "operation_id": operation_id or f"op_{self.operation_count}",
+            "operation_description": operation_description,
+            "signal_quality": signal_quality,

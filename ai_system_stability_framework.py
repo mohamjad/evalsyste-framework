@@ -1087,3 +1087,12 @@ if __name__ == "__main__":
             "System initialized",
             "Processing user query",
             "Generated response"
+        ],
+        context_size=100
+    )
+    
+    print("\nExample operation result:")
+    print(f"Signal Quality: {result['signal_quality']}")
+    print(f"Coherence: {result['metrics']['coherence']:.3f}")
+    
+    print("\n" + framework.generate_stability_report())

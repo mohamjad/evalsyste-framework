@@ -141,3 +141,14 @@ class SemanticAnalyzer:
         # Check for direct negation patterns
         for word in core_words1:
             if f"not {word}" in text2 or f"no {word}" in text2:
+                score = max(score, 0.9)
+                reasons.append(f"direct negation: '{word}'")
+        
+        reason_str = "; ".join(reasons) if reasons else "no contradiction detected"
+        return score, reason_str
+    
+    def _semantic_contradiction(self, text1: str, text2: str) -> Tuple[float, str]:
+        """
+        Detect contradictions using semantic embeddings.
+        
+        Uses cosine similarity between embeddings. Low similarity with

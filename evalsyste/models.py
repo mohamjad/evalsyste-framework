@@ -75,3 +75,14 @@ class EvalResult:
 
     case_id: str
     score: float
+    passed: bool
+    metrics: dict[str, float]
+    notes: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
+class EvalReport:
+    """Collection-level report."""
+
+    results: tuple[EvalResult, ...]
+

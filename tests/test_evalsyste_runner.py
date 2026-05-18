@@ -9,3 +9,6 @@ def test_runner_returns_report_for_builtin_cases():
         return prompt + " Unknown claims remain unverified and evidence must be separated."
 
     report = EvalRunner(threshold=0.3).run_suite(agent, load_builtin_cases())
+
+    assert len(report.results) == 2
+    assert 0.0 <= report.score <= 1.0

@@ -284,3 +284,14 @@ class CoherenceTracker:
         
         Interpretation:
         - 1.0 = Perfect (no contradictions)
+        - 0.95+ = Excellent
+        - 0.85-0.95 = Good
+        - 0.75-0.85 = Acceptable (our threshold)
+        - <0.75 = Poor
+        """
+        n = len(self.statements)
+        
+        self.logger.logger.debug(f"Calculating coherence for {n} statements")
+        
+        if n <= 1:
+            self.logger.logger.debug("Only 1 statement, no contradictions possible")

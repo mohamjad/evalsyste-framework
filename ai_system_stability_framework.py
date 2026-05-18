@@ -207,3 +207,14 @@ class CoherenceTracker:
         self.statements.append(stmt)
         return stmt
     
+    def _check_contradiction(self, stmt1: Statement, stmt2: Statement) -> Tuple[bool, str]:
+        """
+        Check if two statements contradict each other.
+        
+        Uses multi-method approach:
+        1. Semantic analysis (embeddings + lexical patterns) if available
+        2. Fallback to lexical pattern matching
+        """
+        # Try neural model first if available
+        if self.neural_contradiction_model and NEURAL_AVAILABLE and SEMANTIC_AVAILABLE:
+            try:

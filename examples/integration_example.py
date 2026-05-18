@@ -119,3 +119,14 @@ class MockAISystem:
     """Simple mock AI system for demonstration."""
     
     def __init__(self):
+        self.context_window = []
+        self.operation_count = 0
+    
+    def process(self, input_data: str) -> Dict[str, Any]:
+        """Process input and return response."""
+        self.operation_count += 1
+        self.context_window.append(input_data)
+        
+        return {
+            'message': f"Processed: {input_data}",
+            'reasoning': f"This is operation #{self.operation_count}",

@@ -42,3 +42,14 @@ def lexical_entropy(text: str) -> float:
 
 
 def contradiction_flags(text: str) -> tuple[str, ...]:
+    tokens = set(tokenize(text))
+    flags: list[str] = []
+    pairs = (
+        ("always", "never"),
+        ("safe", "unsafe"),
+        ("stable", "unstable"),
+        ("complete", "incomplete"),
+        ("verified", "unverified"),
+        ("certain", "uncertain"),
+    )
+    for left, right in pairs:

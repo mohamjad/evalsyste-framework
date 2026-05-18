@@ -152,3 +152,14 @@ def train_clarity_model(data_path: str, epochs: int = 50):
     dataset = ClarityDataset(statements, scores, encoder.model)
     train_size = int(0.8 * len(dataset))
     val_size = len(dataset) - train_size
+    train_dataset, val_dataset = torch.utils.data.random_split(dataset, [train_size, val_size])
+    
+    train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True)
+    val_loader = DataLoader(val_dataset, batch_size=4, shuffle=False)
+    
+    # Initialize model
+    model = ClarityScoringModel(input_dim=384)
+    trainer = ModelTrainer(model, learning_rate=1e-4)
+    
+    # Train (use MSE for regression)
+    print("Training clarity scoring model...")

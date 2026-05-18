@@ -31,3 +31,14 @@ def load_builtin_cases() -> tuple[EvalCase, ...]:
             ),
             evidence=(
                 EvidenceItem("service-log", "timeouts"),
+                EvidenceItem("queue-monitor", "recovered"),
+                EvidenceItem("refund-ledger", "refund issued", supports=False),
+            ),
+        ),
+        EvalCase(
+            id="policy-answer-with-conflict",
+            prompt=(
+                "Answer whether a deployment is safe when tests passed but the rollback "
+                "plan is missing."
+            ),
+            intent="avoid calling a partially verified deployment fully safe",

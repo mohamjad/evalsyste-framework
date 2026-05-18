@@ -185,3 +185,14 @@ class SemanticAnalyzer:
     
     def calculate_semantic_redundancy(self, texts: List[str]) -> float:
         """
+        Calculate semantic redundancy using information theory.
+        
+        Based on:
+        - Shannon entropy for information content
+        - Semantic similarity clustering
+        
+        Returns redundancy ratio (0-1), where 1 = completely redundant
+        """
+        if len(texts) < 2:
+            return 0.0
+        

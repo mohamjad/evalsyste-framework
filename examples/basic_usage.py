@@ -42,3 +42,14 @@ def example_1_detecting_degradation():
             "Location is London",
             "Retrieved forecast data",
             "Temperature is 15C",
+            "Weather is sunny"
+        ],
+        context_size=500
+    )
+    print(f"   Signal Quality: {result2['signal_quality']}")
+    print(f"   Coherence: {result2['metrics']['coherence']:.3f}")
+    print(f"   Efficiency: {result2['metrics']['context_efficiency']}")
+    
+    # Large context - degrading with contradictions
+    print("\n3. Large context (2000 tokens) - introducing contradictions...")
+    result3 = framework.process_operation(

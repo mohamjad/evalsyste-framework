@@ -75,3 +75,14 @@ class SemanticAnalyzer:
         """
         text1_lower = text1.lower()
         text2_lower = text2.lower()
+        
+        # Method 1: Lexical pattern matching (fast, reliable)
+        lexical_score, lexical_reason = self._lexical_contradiction(text1_lower, text2_lower)
+        
+        # Method 2: Semantic similarity (if embeddings available)
+        semantic_score = 0.0
+        semantic_reason = ""
+        if self.use_embeddings:
+            semantic_score, semantic_reason = self._semantic_contradiction(text1, text2)
+        
+        # Combine scores with weights

@@ -75,3 +75,14 @@ class MonitoredAISystem:
         """
         statements = []
         
+        if isinstance(response, dict):
+            # If response is a dict, look for common fields
+            if 'message' in response:
+                statements.append(response['message'])
+            if 'reasoning' in response:
+                statements.append(response['reasoning'])
+            if 'claims' in response:
+                statements.extend(response['claims'])
+        elif isinstance(response, str):
+            # If response is a string, split into sentences
+            statements = [s.strip() for s in response.split('.') if s.strip()]

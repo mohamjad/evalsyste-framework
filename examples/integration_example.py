@@ -64,3 +64,14 @@ class MonitoredAISystem:
             response.signal_quality = stability_result['signal_quality']
             response.thresholds_passed = stability_result['thresholds_passed']
         
+        return response
+    
+    def _extract_statements(self, response: Any) -> List[str]:
+        """
+        Extract statements/claims from AI response.
+        
+        This is a simple example - you'd customize this based on
+        how your AI system structures its output.
+        """
+        statements = []
+        

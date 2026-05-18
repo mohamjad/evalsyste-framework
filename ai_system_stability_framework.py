@@ -31,3 +31,14 @@ except ImportError:
     StatisticalAnalyzer = None
 
 try:
+    import torch
+    from neural_models import ContradictionDetectionModel, ClarityScoringModel, RedundancyDetectionModel
+    NEURAL_AVAILABLE = True
+except ImportError:
+    NEURAL_AVAILABLE = False
+    ContradictionDetectionModel = None
+    ClarityScoringModel = None
+    RedundancyDetectionModel = None
+    torch = None
+
+

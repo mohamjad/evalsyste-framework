@@ -31,3 +31,14 @@ def example_1_detecting_degradation():
         context_size=100
     )
     print(f"   Signal Quality: {result1['signal_quality']}")
+    print(f"   Coherence: {result1['metrics']['coherence']:.3f}")
+    
+    # Medium context - still good
+    print("\n2. Medium context (500 tokens)...")
+    result2 = framework.process_operation(
+        operation_description="Context enrichment",
+        statements=[
+            "User wants weather information",
+            "Location is London",
+            "Retrieved forecast data",
+            "Temperature is 15C",

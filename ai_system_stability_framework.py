@@ -493,3 +493,14 @@ class SignalMetricsCalculator:
         # Try neural model first if available
         if self.neural_redundancy_model and NEURAL_AVAILABLE and self.semantic_analyzer and self.semantic_analyzer.model:
             try:
+                embeddings = []
+                for stmt in statements:
+                    emb = self.semantic_analyzer.model.encode([stmt.content])[0]
+                    embeddings.append(torch.tensor(emb))
+                redundancy = self.neural_redundancy_model.predict(embeddings)
+                
+                self.logger.log_calculation(
+                    component="SignalMetricsCalculator",
+                    operation="Calculate Semantic Redundancy Ratio",
+                    inputs={"statements_count": len(statements), "method": "neural_model"},
+                    formula="learned redundancy from neural network",

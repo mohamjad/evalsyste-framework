@@ -31,3 +31,14 @@ def test_trend_analysis_identifies_increase():
 
     result = analyzer.analyze_trend([0.2, 0.4, 0.6, 0.8, 1.0])
 
+    assert result["trend"] in {"increasing", "slightly_increasing"}
+    assert result["slope"] > 0
+
+
+def test_bootstrap_interval_returns_ordered_bounds():
+    """Bootstrap output should return mean and ordered interval bounds."""
+    analyzer = StatisticalAnalyzer()
+
+    mean, lower, upper = analyzer.bootstrap_confidence_interval([0.3, 0.4, 0.5, 0.6], n_bootstrap=50)
+
+    assert lower <= mean <= upper

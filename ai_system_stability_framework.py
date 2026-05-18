@@ -856,3 +856,14 @@ class SelfVerifier:
         try:
             os.unlink(temp_file.name)
         except:
+            pass
+        
+        self.logger.logger.info("[PASS] Contradiction Detection")
+    
+    def test_threshold_checking(self):
+        """Test threshold checking logic."""
+        # Simple threshold check
+        coherence = 0.70  # Below 0.75 threshold
+        threshold = 0.75
+        
+        passed = coherence >= threshold

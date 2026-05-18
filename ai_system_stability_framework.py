@@ -548,3 +548,14 @@ class SignalMetricsCalculator:
         unique_ratio = len(unique_words) / len(all_words)
         redundancy = 1.0 - unique_ratio
         
+        self.logger.log_calculation(
+            component="SignalMetricsCalculator",
+            operation="Calculate Redundancy Ratio",
+            inputs={
+                "total_words": len(all_words),
+                "unique_words": len(unique_words),
+                "method": "lexical_jaccard"
+            },
+            formula="redundancy = 1.0 - (unique_words / total_words)",
+            calculation=f"1.0 - ({len(unique_words)} / {len(all_words)}) = {redundancy:.4f}",
+            output=redundancy,

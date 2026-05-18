@@ -108,3 +108,14 @@ class StatisticalAnalyzer:
         df = max(1, int(df))
         
         # Approximate p-value using t-distribution
+        # Simplified: use critical values
+        critical_value_95 = 1.96 if df >= 30 else 2.0
+        
+        is_significant = abs(t_statistic) > critical_value_95
+        
+        # Approximate p-value (simplified)
+        if abs(t_statistic) > 3.0:
+            p_value = 0.001
+        elif abs(t_statistic) > 2.5:
+            p_value = 0.01
+        elif abs(t_statistic) > 2.0:

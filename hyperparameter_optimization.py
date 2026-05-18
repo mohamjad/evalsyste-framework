@@ -185,3 +185,14 @@ class BayesianOptimizer:
         best_idx = np.argmax(acq_values)
         best_point = candidates[best_idx]
         
+        return best_point
+    
+    def optimize(self, objective_function: Callable[[Dict[str, float]], float]) -> Tuple[Dict[str, float], float]:
+        """
+        Optimize hyperparameters.
+        
+        Args:
+            objective_function: Function that takes hyperparameter dict and returns score (higher is better)
+        
+        Returns:
+            (best_hyperparameters, best_score)

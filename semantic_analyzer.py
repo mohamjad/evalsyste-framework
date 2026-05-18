@@ -207,3 +207,14 @@ class SemanticAnalyzer:
             return 0.0
         
         # Tokenize and normalize
+        word_sets = []
+        for text in texts:
+            words = set(re.findall(r'\b\w+\b', text.lower()))
+            word_sets.append(words)
+        
+        # Calculate pairwise Jaccard similarities
+        similarities = []
+        for i in range(len(word_sets)):
+            for j in range(i + 1, len(word_sets)):
+                intersection = len(word_sets[i] & word_sets[j])
+                union = len(word_sets[i] | word_sets[j])

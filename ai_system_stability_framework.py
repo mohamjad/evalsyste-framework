@@ -581,3 +581,14 @@ class SignalMetricsCalculator:
             self.baseline_signal = current_coherence
             self.baseline_context = current_context
             self.logger.logger.info(f"Setting baseline: signal={current_coherence}, context={current_context}")
+            return None
+        
+        current_efficiency = current_coherence / current_context if current_context > 0 else 0
+        baseline_efficiency = self.baseline_signal / self.baseline_context if self.baseline_context > 0 else 0
+        
+        if baseline_efficiency == 0:
+            return None
+        
+        efficiency_ratio = current_efficiency / baseline_efficiency
+        
+        self.logger.log_calculation(

@@ -240,3 +240,14 @@ class SemanticAnalyzer:
             # Calculate pairwise cosine similarities
             similarities = []
             for i in range(len(embeddings)):
+                for j in range(i + 1, len(embeddings)):
+                    emb1, emb2 = embeddings[i], embeddings[j]
+                    dot_product = np.dot(emb1, emb2)
+                    norm1 = np.linalg.norm(emb1)
+                    norm2 = np.linalg.norm(emb2)
+                    
+                    if norm1 > 0 and norm2 > 0:
+                        similarity = dot_product / (norm1 * norm2)
+                        similarities.append(similarity)
+            
+            if not similarities:

@@ -152,3 +152,14 @@ class StatisticalAnalyzer:
         # Use indices as time if timestamps not provided
         if timestamps is None:
             x = list(range(n))
+        else:
+            x = timestamps
+        
+        # Linear regression: y = ax + b
+        mean_x = statistics.mean(x)
+        mean_y = statistics.mean(values)
+        
+        # Calculate slope and intercept
+        numerator = sum((x[i] - mean_x) * (values[i] - mean_y) for i in range(n))
+        denominator = sum((x[i] - mean_x) ** 2 for i in range(n))
+        

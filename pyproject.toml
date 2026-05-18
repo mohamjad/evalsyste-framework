@@ -42,3 +42,12 @@ Repository = "https://github.com/mohamjad/evalsyste-framework"
 testpaths = ["tests"]
 python_files = ["test_*.py"]
 addopts = "-q"
+
+[tool.setuptools]
+py-modules = [
+  "ai_system_stability_framework",
+  "hyperparameter_optimization",
+  "semantic_analyzer",
+  "statistical_analysis"
+]
+packages = ["evalsyste"]

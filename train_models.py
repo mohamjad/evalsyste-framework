@@ -97,3 +97,14 @@ def train_contradiction_model(data_path: str, epochs: int = 50):
     
     # Initialize encoder
     encoder = SemanticAnalyzer(use_embeddings=True)
+    if not encoder.model:
+        print("Error: sentence-transformers not available")
+        return
+    
+    # Create dataset
+    dataset = ContradictionDataset(pairs, labels, encoder.model)
+    train_size = int(0.8 * len(dataset))
+    val_size = len(dataset) - train_size
+    train_dataset, val_dataset = torch.utils.data.random_split(dataset, [train_size, val_size])
+    
+    train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True)

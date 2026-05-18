@@ -603,3 +603,14 @@ class SignalMetricsCalculator:
             formula="efficiency_ratio = (current_signal/current_context) / (baseline_signal/baseline_context)",
             calculation=f"({current_coherence}/{current_context}) / ({self.baseline_signal}/{self.baseline_context}) = {efficiency_ratio:.4f}",
             output=efficiency_ratio,
+            interpretation=self._interpret_efficiency(efficiency_ratio)
+        )
+        
+        return efficiency_ratio
+    
+    def _interpret_efficiency(self, ratio: float) -> str:
+        """Interpret efficiency ratio."""
+        if ratio > 1.1:
+            return "AMPLIFYING - scale is improving efficiency significantly"
+        elif ratio > 0.9:
+            return "MAINTAINING - scale is neutral or slightly positive"

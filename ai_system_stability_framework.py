@@ -790,3 +790,14 @@ class SelfVerifier:
             f"Tests run: {len(tests)}, "
             f"Passed: {self.tests_passed}, "
             f"Failed: {self.tests_failed}"
+        )
+        
+        if self.tests_failed == 0:
+            self.logger.logger.info("Status: VERIFIED - Framework is safe to use")
+        else:
+            self.logger.logger.error("Status: FAILED - Framework has errors")
+        
+        return self.tests_failed == 0
+    
+    def test_coherence_calculation(self):
+        """Test coherence calculation with known input."""

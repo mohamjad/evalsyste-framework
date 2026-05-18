@@ -416,3 +416,14 @@ class SignalMetricsCalculator:
             # Fallback to information-theoretic method
             # Information content using Shannon entropy
             info_content = 0.5  # Default
+            if self.semantic_analyzer:
+                try:
+                    info_content = self.semantic_analyzer.calculate_information_content(content)
+                except Exception:
+                    pass
+            
+            # Word count component (normalized, optimal around 15-25 words)
+            word_count = len(content.split())
+            if word_count == 0:
+                word_score = 0.0
+            elif word_count < 5:

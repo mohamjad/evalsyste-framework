@@ -64,3 +64,14 @@ ai_system_stability_framework.py
 
 ```bash
 evalsyste builtin
+pytest
+python examples/basic_usage.py
+```
+
+## Limits
+
+Heuristic scores are not truth. They are pressure tests.
+
+Use this to expose weak behavior, compare runs, and force eval assumptions into
+code.
+

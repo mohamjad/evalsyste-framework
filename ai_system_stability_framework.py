@@ -196,3 +196,14 @@ class CoherenceTracker:
             is_contradiction, reason = self._check_contradiction(stmt, existing)
             if is_contradiction:
                 contradiction = Contradiction(
+                    statement1=existing,
+                    statement2=stmt,
+                    reason=reason,
+                    detected_at=time.time()
+                )
+                self.contradictions.append(contradiction)
+                self.logger.log_contradiction(existing, stmt, reason)
+        
+        self.statements.append(stmt)
+        return stmt
+    

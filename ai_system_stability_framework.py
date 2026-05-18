@@ -779,3 +779,14 @@ class SelfVerifier:
         ]
         
         for test in tests:
+            try:
+                test()
+                self.tests_passed += 1
+            except AssertionError as e:
+                self.tests_failed += 1
+                self.logger.logger.error(f"Test failed: {e}")
+        
+        self.logger.logger.info(
+            f"Tests run: {len(tests)}, "
+            f"Passed: {self.tests_passed}, "
+            f"Failed: {self.tests_failed}"

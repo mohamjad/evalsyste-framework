@@ -119,3 +119,14 @@ def example_3_custom_thresholds():
     print("\n" + "=" * 60)
     print("Example 3: Custom Thresholds")
     print("=" * 60)
+    
+    # Stricter thresholds
+    custom_config = {
+        'coherence_minimum': 0.80,  # Stricter than default 0.75
+        'clarity_minimum': 0.75,     # Stricter than default 0.70
+        'redundancy_maximum': 0.35    # Stricter than default 0.40
+    }
+    
+    framework = AIStabilityFramework(
+        log_file="example3.log",
+        log_level="INFO",

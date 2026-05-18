@@ -834,3 +834,14 @@ class SelfVerifier:
         except:
             pass
         
+        self.logger.logger.info("[PASS] Coherence Calculation")
+    
+    def test_contradiction_detection(self):
+        """Test that we can detect obvious contradictions."""
+        import tempfile
+        import os
+        temp_file = tempfile.NamedTemporaryFile(delete=False)
+        temp_file.close()
+        test_logger = AuditLogger(log_file=temp_file.name, log_level="ERROR")
+        tracker = CoherenceTracker(test_logger)
+        

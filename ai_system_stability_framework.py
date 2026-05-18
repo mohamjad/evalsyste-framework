@@ -1032,3 +1032,14 @@ class AIStabilityFramework:
             f"Operation complete: signal_quality={signal_quality}, "
             f"coherence={coherence:.3f}"
         )
+        
+        return result
+    
+    def generate_stability_report(self) -> str:
+        """Generate human-readable stability report."""
+        coherence = self.coherence_tracker.calculate_coherence_score()
+        scaling_analysis = self.context_analyzer.analyze_scaling_behavior()
+        
+        report = f"""
+=== AI SYSTEM STABILITY REPORT ===
+

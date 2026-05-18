@@ -42,3 +42,14 @@ class StatisticalAnalyzer:
             (mean, lower_bound, upper_bound)
         """
         if not values:
+            return 0.0, 0.0, 0.0
+        
+        n = len(values)
+        mean = statistics.mean(values)
+        
+        if n == 1:
+            return mean, mean, mean
+        
+        # Sample standard deviation
+        if n > 1:
+            std_dev = statistics.stdev(values)

@@ -207,3 +207,14 @@ class BayesianOptimizer:
         # Bayesian optimization loop
         for iteration in range(self.n_iterations):
             # Select next point
+            next_point = self._select_next_point()
+            
+            # Evaluate
+            score = objective_function(next_point)
+            self.X.append(next_point)
+            self.y.append(score)
+        
+        # Find best
+        best_idx = np.argmax(self.y)
+        best_point = self.X[best_idx]
+        best_score = self.y[best_idx]

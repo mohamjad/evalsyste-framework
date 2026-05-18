@@ -20,3 +20,14 @@ def score_nonverifiable_answer(case: EvalCase, answer: str, threshold: float = 0
     metrics = rubric_proxy_scores(answer, case.references, case.evidence)
     penalty = uncertainty_penalty(answer)
     metrics["uncertainty_penalty"] = penalty
+    raw_score = weighted_mean(metrics, criteria)
+    score = max(0.0, raw_score - 0.15 * penalty)
+    notes = []
+    if metrics["evidence_support"] < 0.5 and case.evidence:
+        notes.append("weak evidence support")
+    if metrics["non_contradiction"] < 1.0:
+        notes.append("internal contradiction risk")
+    return EvalResult(
+        case_id=case.id,
+        score=score,
+        passed=score >= threshold,

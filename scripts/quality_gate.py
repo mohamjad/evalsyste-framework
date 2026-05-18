@@ -31,3 +31,11 @@ def main() -> int:
         "thesis_visible": "non-verifiable" in readme and "intent drift" in readme,
         "scenario_matrix": "evidence laundering" in docs and "context decay" in docs,
         "no_placeholder_language": "lorem ipsum" not in docs and "placeholder implementation" not in docs,
+    }
+    payload = {"repo": "evalsyste-framework", "passed": all(checks.values()), "checks": checks}
+    print(json.dumps(payload, indent=2, sort_keys=True))
+    return 0 if payload["passed"] else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

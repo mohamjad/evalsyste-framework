@@ -504,3 +504,14 @@ class SignalMetricsCalculator:
                     operation="Calculate Semantic Redundancy Ratio",
                     inputs={"statements_count": len(statements), "method": "neural_model"},
                     formula="learned redundancy from neural network",
+                    calculation=f"Neural redundancy = {redundancy:.4f}",
+                    output=redundancy,
+                    interpretation=f"Neural redundancy: {redundancy*100:.1f}% (learned model)"
+                )
+                
+                return redundancy
+            except Exception as e:
+                self.logger.logger.debug(f"Neural redundancy failed: {e}, using semantic")
+        
+        # Use semantic redundancy if available
+        if self.semantic_analyzer:

@@ -86,3 +86,14 @@ def example_2_scaling_validation():
         operation_description="Baseline",
         statements=["Processing started"],
         context_size=100
+    )
+    
+    # Add context gradually and monitor
+    print("\nExpanding context gradually...")
+    for context_size in [500, 1000, 2000, 5000]:
+        result = framework.process_operation(
+            operation_description=f"Context expansion to {context_size}",
+            statements=[
+                f"Analyzed {context_size} tokens",
+                "Found relevant patterns",
+                "Generated insights",

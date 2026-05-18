@@ -196,3 +196,14 @@ def main():
     args = parser.parse_args()
     
     if args.model == "contradiction":
+        train_contradiction_model(args.data or "", args.epochs)
+    elif args.model == "clarity":
+        train_clarity_model(args.data or "", args.epochs)
+    elif args.model == "redundancy":
+        print("Redundancy model training not yet implemented")
+    else:
+        print(f"Unknown model: {args.model}")
+
+
+if __name__ == "__main__":
+    main()

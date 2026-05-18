@@ -108,3 +108,14 @@ def example_2_scaling_validation():
         else:
             print(f"   Context {context_size}: baseline established")
     
+    # Generate analysis
+    analysis = framework.context_analyzer.analyze_scaling_behavior()
+    print(f"\nScaling Trend: {analysis['trend']}")
+    print(f"Recommendation: {analysis['recommendation']}")
+
+
+def example_3_custom_thresholds():
+    """Example: Using custom thresholds."""
+    print("\n" + "=" * 60)
+    print("Example 3: Custom Thresholds")
+    print("=" * 60)

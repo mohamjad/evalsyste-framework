@@ -53,3 +53,14 @@ evalsyste/
   scoring.py         rubric, evidence, uncertainty scores
   nonverifiable.py   scorer for work without one gold answer
   intent.py          session intent drift
+  runner.py          small suite runner
+  cases.py           built-in ambiguity cases
+
+ai_system_stability_framework.py
+  older stability monitor for contradiction, clarity, redundancy, context scale
+```
+
+## Useful Commands
+
+```bash
+evalsyste builtin

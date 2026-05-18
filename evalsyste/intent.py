@@ -31,3 +31,14 @@ def score_intent_drift(trace: SessionTrace) -> IntentDriftReport:
     anchor = trace.target_intent
     anchor_similarity = _mean(
         [jaccard_similarity(anchor, turn.prompt + " " + turn.response) for turn in trace.turns]
+    )
+    declared = [turn.declared_intent for turn in trace.turns if turn.declared_intent]
+    declared_stability = (
+        _mean([jaccard_similarity(anchor, intent) for intent in declared]) if declared else 0.0
+    )
+    anchor_tokens = set(tokenize(anchor))
+    focus_values = []
+    for turn in trace.turns:
+        response_tokens = set(tokenize(turn.response))
+        focus_values.append(len(anchor_tokens & response_tokens) / max(len(anchor_tokens), 1))
+    response_focus = _mean(focus_values)

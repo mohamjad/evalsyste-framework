@@ -207,3 +207,10 @@ if __name__ == "__main__":
     # Run all examples
     example_1_detecting_degradation()
     example_2_scaling_validation()
+    example_3_custom_thresholds()
+    example_4_continuous_monitoring()
+    
+    print("\n" + "=" * 60)
+    print("All examples completed!")
+    print("Check the log files for detailed traces.")
+    print("=" * 60)

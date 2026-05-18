@@ -20,3 +20,14 @@ except ImportError:
     SKLEARN_AVAILABLE = False
     GaussianProcessRegressor = None
 
+
+@dataclass
+class HyperparameterSpace:
+    """Define search space for hyperparameters."""
+    name: str
+    min_val: float
+    max_val: float
+    param_type: str = 'continuous'  # 'continuous' or 'discrete'
+    log_scale: bool = False  # Use log scale for optimization
+
+

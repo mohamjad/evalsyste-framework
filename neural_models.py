@@ -196,3 +196,14 @@ class ClarityScoringModel(nn.Module):
         with torch.no_grad():
             score = self.forward(statement_embedding)
             return score.item()
+
+
+class RedundancyDetectionModel(nn.Module):
+    """
+    Neural network for learned redundancy detection.
+    
+    Takes multiple statement embeddings and predicts redundancy ratio.
+    """
+    
+    def __init__(self,
+                 embedding_dim: int = 384,

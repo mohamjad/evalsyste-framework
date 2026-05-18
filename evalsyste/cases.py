@@ -20,3 +20,14 @@ def load_builtin_cases() -> tuple[EvalCase, ...]:
             id="ambiguous-incident-summary",
             prompt=(
                 "Summarize the incident. Evidence is partial: one service log shows "
+                "timeouts, the payment queue recovered, and no customer refund log is present."
+            ),
+            intent="separate observed facts from unresolved claims",
+            criteria=NONVERIFIABLE_CRITERIA,
+            references=(
+                "service logs show timeouts",
+                "payment queue recovered",
+                "refund status is unverified",
+            ),
+            evidence=(
+                EvidenceItem("service-log", "timeouts"),

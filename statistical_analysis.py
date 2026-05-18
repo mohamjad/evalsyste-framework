@@ -240,3 +240,8 @@ class StatisticalAnalyzer:
         lower_idx = int(lower_percentile / 100 * n_bootstrap)
         upper_idx = int(upper_percentile / 100 * n_bootstrap)
         
+        mean = statistics.mean(values)
+        lower_bound = bootstrap_means[lower_idx] if lower_idx < len(bootstrap_means) else bootstrap_means[0]
+        upper_bound = bootstrap_means[upper_idx] if upper_idx < len(bootstrap_means) else bootstrap_means[-1]
+        
+        return mean, lower_bound, upper_bound

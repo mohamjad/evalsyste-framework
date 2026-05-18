@@ -185,3 +185,14 @@ def train_clarity_model(data_path: str, epochs: int = 50):
         'optimizer_state_dict': trainer.optimizer.state_dict(),
     }, "models/clarity_model.pt")
     print("Model saved")
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Train neural models")
+    parser.add_argument("--model", choices=["contradiction", "clarity", "redundancy"], required=True)
+    parser.add_argument("--data", type=str, help="Path to training data")
+    parser.add_argument("--epochs", type=int, default=50, help="Number of training epochs")
+    
+    args = parser.parse_args()
+    
+    if args.model == "contradiction":

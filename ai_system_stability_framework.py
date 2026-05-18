@@ -889,3 +889,14 @@ class AIStabilityFramework:
         )
     """
     
+    def __init__(self, log_file: str = "stability.log", 
+                 log_level: str = "INFO",
+                 custom_thresholds: Optional[Dict[str, float]] = None):
+        """
+        Initialize framework with self-verification.
+        
+        The framework will NOT proceed if self-verification fails.
+        """
+        # Set up logging
+        self.logger = AuditLogger(log_file, log_level)
+        self.logger.logger.info("Initializing AI Stability Framework")

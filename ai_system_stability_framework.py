@@ -647,3 +647,14 @@ class ContextWindowAnalyzer:
             statements_count=statements_count
         )
         self.snapshots.append(snapshot)
+        
+        self.logger.logger.info(
+            f"Snapshot captured: context={context_size}, "
+            f"coherence={coherence:.3f}, ops={operations_count}"
+        )
+    
+    def analyze_scaling_behavior(self) -> Dict[str, Any]:
+        """
+        Analyze scaling behavior with statistical significance testing.
+        
+        Uses linear regression and correlation analysis to determine trends.

@@ -130,3 +130,14 @@ class SemanticAnalyzer:
         
         # If one has negation and core words overlap significantly
         has_neg1 = any(neg in words1 for neg in self.negation_words)
+        has_neg2 = any(neg in words2 for neg in self.negation_words)
+        
+        if (has_neg1 or has_neg2) and len(core_words1 & core_words2) > 0:
+            overlap_ratio = len(core_words1 & core_words2) / max(len(core_words1), len(core_words2))
+            if overlap_ratio > 0.3:  # Significant overlap
+                score = max(score, 0.7)
+                reasons.append(f"explicit negation with {overlap_ratio:.2f} word overlap")
+        
+        # Check for direct negation patterns
+        for word in core_words1:
+            if f"not {word}" in text2 or f"no {word}" in text2:

@@ -31,3 +31,11 @@ def test_redundancy_increases_for_duplicate_text():
     assert duplicate_score > mixed_score
 
 
+def test_information_content_rewards_diverse_text():
+    """Diverse language should carry more information than repetition."""
+    analyzer = SemanticAnalyzer(use_embeddings=False)
+
+    repetitive = analyzer.calculate_information_content("same same same same")
+    diverse = analyzer.calculate_information_content("signal clarity redundancy coherence")
+
+    assert diverse > repetitive

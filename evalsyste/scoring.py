@@ -42,3 +42,14 @@ def rubric_proxy_scores(
     return {
         "reference_coverage": coverage_score(answer, references),
         "evidence_support": evidence_support_score(answer, evidence),
+        "specificity": min(len(set(answer.split())) / 80.0, 1.0),
+        "non_contradiction": 1.0 if not flags else max(0.0, 1.0 - 0.25 * len(flags)),
+        "information_density": lexical_entropy(answer),
+    }
+
+
+def uncertainty_penalty(answer: str) -> float:
+    lowered = answer.lower()
+    hedges = ("maybe", "might", "could", "unclear", "unknown", "not enough information")
+    hedge_count = sum(lowered.count(hedge) for hedge in hedges)
+    return min(hedge_count / 5.0, 1.0)

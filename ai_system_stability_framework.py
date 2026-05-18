@@ -812,3 +812,14 @@ class SelfVerifier:
         
         # Add statements that should create specific coherence
         # 4 statements, if we add 1 contradiction, coherence should be:
+        # total_pairs = 4*3/2 = 6
+        # coherence = 1.0 - (1/6) = 0.833
+        
+        tracker.add_statement("System is stable", 100)
+        tracker.add_statement("Processing works", 100)
+        tracker.add_statement("System is unstable", 100)  # Contradiction with first
+        tracker.add_statement("Output is correct", 100)
+        
+        coherence = tracker.calculate_coherence_score()
+        
+        # Should have 1 contradiction, 4 statements = 6 pairs

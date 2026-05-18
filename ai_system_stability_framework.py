@@ -592,3 +592,14 @@ class SignalMetricsCalculator:
         efficiency_ratio = current_efficiency / baseline_efficiency
         
         self.logger.log_calculation(
+            component="SignalMetricsCalculator",
+            operation="Calculate Context Efficiency",
+            inputs={
+                "current_coherence": current_coherence,
+                "current_context": current_context,
+                "baseline_coherence": self.baseline_signal,
+                "baseline_context": self.baseline_context
+            },
+            formula="efficiency_ratio = (current_signal/current_context) / (baseline_signal/baseline_context)",
+            calculation=f"({current_coherence}/{current_context}) / ({self.baseline_signal}/{self.baseline_context}) = {efficiency_ratio:.4f}",
+            output=efficiency_ratio,

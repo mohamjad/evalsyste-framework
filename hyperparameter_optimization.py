@@ -42,3 +42,14 @@ class BayesianOptimizer:
     4. Repeating until convergence
     """
     
+    def __init__(self, 
+                 space: List[HyperparameterSpace],
+                 acquisition_function: str = 'ei',
+                 n_initial: int = 5,
+                 n_iterations: int = 50):
+        self.space = space
+        self.acquisition_function = acquisition_function
+        self.n_initial = n_initial
+        self.n_iterations = n_iterations
+        
+        # Storage

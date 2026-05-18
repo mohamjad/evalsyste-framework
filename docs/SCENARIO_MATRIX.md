@@ -31,3 +31,14 @@ Scored by:
 - redundancy and clarity signals
 
 ## Non-verifiable synthesis
+
+There is no single answer key, but the work still has structure.
+
+Scored by:
+
+- reference coverage
+- evidence support
+- specificity
+- information density
+
+## Tool trace collapse

@@ -31,3 +31,12 @@ result = framework.process_operation(
 )
 
 print(result["metrics"]["coherence"])
+```
+
+## 4. Interpret the output carefully
+
+- `coherence` is a normalized contradiction count, not a semantic truth score.
+- `clarity` and `redundancy` are heuristic indicators.
+- `signal_quality` is a coarse label meant for debugging, not for governance decisions.
+
+For scope and limitations, read [`METHODS_AND_LIMITATIONS.md`](./METHODS_AND_LIMITATIONS.md).

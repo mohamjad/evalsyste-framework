@@ -988,3 +988,14 @@ class AIStabilityFramework:
             signal_quality = "NOISY"
         elif efficiency is not None:
             if efficiency > 1.1:
+                signal_quality = "AMPLIFYING"
+            elif efficiency > 0.9:
+                signal_quality = "MAINTAINING"
+            else:
+                signal_quality = "DEGRADING"
+        else:
+            signal_quality = "BASELINE"
+        
+        # Capture snapshot
+        self.context_analyzer.capture_snapshot(
+            context_size=context_size,

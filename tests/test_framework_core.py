@@ -42,3 +42,14 @@ def test_custom_thresholds_are_applied(tmp_path):
     assert framework.thresholds["coherence_minimum"] == 0.9
 
 
+def test_report_includes_recent_operations(tmp_path):
+    """Generated reports should summarize recent monitored work."""
+    framework = AIStabilityFramework(log_file=str(tmp_path / "report.log"), log_level="ERROR")
+    framework.process_operation(
+        operation_description="reportable operation",
+        statements=["System initialized", "Generated response"],
+        context_size=100,
+    )
+
+    report = framework.generate_stability_report()
+

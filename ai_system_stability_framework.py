@@ -64,3 +64,14 @@ class Contradiction:
 
 @dataclass
 class ContextSnapshot:
+    """Snapshot of system state at a particular context size."""
+    context_size: int
+    coherence: float
+    operations_count: int
+    error_rate: float = 0.0
+    timestamp: float = field(default_factory=time.time)
+    statements_count: int = 0
+
+
+class AuditLogger:
+    """

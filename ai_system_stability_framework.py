@@ -20,3 +20,14 @@ try:
     from semantic_analyzer import SemanticAnalyzer
     SEMANTIC_AVAILABLE = True
 except ImportError:
+    SEMANTIC_AVAILABLE = False
+    SemanticAnalyzer = None
+
+try:
+    from statistical_analysis import StatisticalAnalyzer
+    STATISTICAL_AVAILABLE = True
+except ImportError:
+    STATISTICAL_AVAILABLE = False
+    StatisticalAnalyzer = None
+
+try:

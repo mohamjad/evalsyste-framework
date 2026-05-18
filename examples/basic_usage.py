@@ -196,3 +196,14 @@ def example_4_continuous_monitoring():
             if not degradation_detected:
                 print(f"\nWARNING: Quality issue detected at operation {operation_num}")
                 degradation_detected = True
+            print(f"   Signal Quality: {result['signal_quality']}")
+            print(f"   Coherence: {result['metrics']['coherence']:.3f}")
+            print(f"   Contradictions: {result['metrics']['contradictions_count']}")
+    
+    print("\n" + framework.generate_stability_report())
+
+
+if __name__ == "__main__":
+    # Run all examples
+    example_1_detecting_degradation()
+    example_2_scaling_validation()

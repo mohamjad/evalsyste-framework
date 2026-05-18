@@ -42,3 +42,12 @@ def score_intent_drift(trace: SessionTrace) -> IntentDriftReport:
         response_tokens = set(tokenize(turn.response))
         focus_values.append(len(anchor_tokens & response_tokens) / max(len(anchor_tokens), 1))
     response_focus = _mean(focus_values)
+    retained = 0.45 * anchor_similarity + 0.25 * declared_stability + 0.30 * response_focus
+    drift_score = 1.0 - max(0.0, min(1.0, retained))
+    return IntentDriftReport(
+        session_id=trace.id,
+        anchor_similarity=anchor_similarity,
+        declared_intent_stability=declared_stability,
+        response_focus=response_focus,
+        drift_score=drift_score,
+    )

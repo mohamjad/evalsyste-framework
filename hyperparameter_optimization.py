@@ -31,3 +31,14 @@ class HyperparameterSpace:
     log_scale: bool = False  # Use log scale for optimization
 
 
+class BayesianOptimizer:
+    """
+    Bayesian optimization using Gaussian Process regression.
+
+    Optimizes expensive black-box functions by:
+    1. Building GP model of objective function
+    2. Using acquisition function (Expected Improvement) to select next point
+    3. Evaluating and updating GP model
+    4. Repeating until convergence
+    """
+    

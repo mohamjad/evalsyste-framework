@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evalsyste-framework"
+version = "2.0.0"
+description = "Lightweight toolkit for monitoring contradiction, clarity, and stability signals across growing context."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }

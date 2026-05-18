@@ -97,3 +97,14 @@ class ContradictionDetectionModel(nn.Module):
             return sentence_embedding
         else:
             return self.encoder(sentence_embedding)
+    
+    def forward(self, 
+                sent1_emb: torch.Tensor, 
+                sent2_emb: torch.Tensor) -> torch.Tensor:
+        """
+        Forward pass for contradiction detection.
+        
+        Args:
+            sent1_emb: Sentence 1 embedding [batch_size, embedding_dim]
+            sent2_emb: Sentence 2 embedding [batch_size, embedding_dim]
+        

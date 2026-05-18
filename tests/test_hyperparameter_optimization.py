@@ -31,3 +31,8 @@ def test_optimizer_finds_reasonable_point_for_simple_objective():
 
     def objective(point):
         return 1.0 - (point["x"] - 0.5) ** 2
+
+    best_point, best_score = optimizer.optimize(objective)
+
+    assert -2.0 <= best_point["x"] <= 2.0
+    assert best_score > 0.5

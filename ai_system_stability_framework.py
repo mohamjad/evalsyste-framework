@@ -174,3 +174,14 @@ class CoherenceTracker:
                         self.logger.logger.info("Loaded pre-trained contradiction detection model")
                 except Exception:
                     self.logger.logger.debug("No pre-trained contradiction model found, using random initialization")
+            except Exception as e:
+                self.logger.logger.warning(f"Could not initialize neural contradiction model: {e}")
+                self.neural_contradiction_model = None
+    
+    def add_statement(self, content: str, context_size: int, 
+                     confidence: float = 1.0, operation_id: Optional[str] = None) -> Statement:
+        """Add a new statement and check for contradictions."""
+        stmt = Statement(
+            content=content,
+            timestamp=time.time(),
+            context_size=context_size,

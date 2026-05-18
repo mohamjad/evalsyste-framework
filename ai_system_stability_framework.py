@@ -845,3 +845,14 @@ class SelfVerifier:
         test_logger = AuditLogger(log_file=temp_file.name, log_level="ERROR")
         tracker = CoherenceTracker(test_logger)
         
+        tracker.add_statement("The system is stable", 100)
+        tracker.add_statement("The system is unstable", 100)
+        
+        # Should detect contradiction
+        assert len(tracker.contradictions) > 0, \
+            "Failed to detect obvious contradiction"
+        
+        # Clean up temp file
+        try:
+            os.unlink(temp_file.name)
+        except:

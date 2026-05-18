@@ -141,3 +141,14 @@ class ContradictionDetectionModel(nn.Module):
 
 
 class ClarityScoringModel(nn.Module):
+    """
+    Neural network for learned clarity scoring.
+    
+    Takes statement text/embeddings and predicts clarity score (0-1).
+    Can be trained on human-annotated clarity ratings.
+    """
+    
+    def __init__(self,
+                 input_dim: int = 384,
+                 hidden_dims: List[int] = [256, 128],
+                 dropout: float = 0.1):

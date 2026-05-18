@@ -130,3 +130,14 @@ class StatisticalAnalyzer:
         return is_significant, p_value, interpretation
     
     def analyze_trend(self, values: List[float], timestamps: Optional[List[float]] = None) -> Dict[str, Any]:
+        """
+        Analyze trend in a time series.
+        
+        Uses linear regression and correlation analysis.
+        
+        Returns:
+            Dictionary with trend statistics
+        """
+        if len(values) < 2:
+            return {
+                "trend": "insufficient_data",

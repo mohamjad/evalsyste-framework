@@ -42,3 +42,14 @@ def agent(prompt, metadata):
 
 report = EvalRunner().run_suite(agent, load_builtin_cases())
 print(report.score)
+print(report.pass_rate)
+```
+
+## What Is In Here
+
+```text
+evalsyste/
+  models.py          typed eval cases, evidence, traces, reports
+  scoring.py         rubric, evidence, uncertainty scores
+  nonverifiable.py   scorer for work without one gold answer
+  intent.py          session intent drift

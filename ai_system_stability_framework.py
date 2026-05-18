@@ -746,3 +746,14 @@ class ContextWindowAnalyzer:
             f"Scaling analysis: trend={trend}, "
             f"significant={result['statistical_significance']}, "
             f"p={result.get('p_value', 'N/A')}"
+        )
+        
+        return result
+
+
+class SelfVerifier:
+    """
+    Verifies that the framework itself works correctly.
+
+    Before monitoring any AI system, we test:
+    1. Metric calculations with known inputs

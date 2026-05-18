@@ -614,3 +614,14 @@ class SignalMetricsCalculator:
             return "AMPLIFYING - scale is improving efficiency significantly"
         elif ratio > 0.9:
             return "MAINTAINING - scale is neutral or slightly positive"
+        else:
+            return "DEGRADING - scale is reducing efficiency"
+
+
+class ContextWindowAnalyzer:
+    """
+    Analyzes how system behavior changes with context scale.
+    """
+    
+    def __init__(self, logger: AuditLogger):
+        self.logger = logger

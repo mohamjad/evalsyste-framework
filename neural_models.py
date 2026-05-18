@@ -75,3 +75,14 @@ class ContradictionDetectionModel(nn.Module):
             nn.Linear(hidden_dim, hidden_dim // 2),
             nn.ReLU(),
             nn.Dropout(dropout),
+            nn.Linear(hidden_dim // 2, 1),
+            nn.Sigmoid()
+        )
+        
+        # Initialize weights
+        self._initialize_weights()
+    
+    def _initialize_weights(self):
+        """Xavier initialization for learned layers."""
+        for module in self.modules():
+            if isinstance(module, nn.Linear):

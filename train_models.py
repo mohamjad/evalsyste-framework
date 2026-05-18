@@ -119,3 +119,14 @@ def train_contradiction_model(data_path: str, epochs: int = 50):
     history = trainer.train(train_loader, val_loader, epochs=epochs)
     
     # Save
+    os.makedirs("models", exist_ok=True)
+    trainer.save_model("models/contradiction_model.pt")
+    print(f"Model saved. Best validation loss: {trainer.best_loss:.4f}")
+    
+    return trainer
+
+
+def train_clarity_model(data_path: str, epochs: int = 50):
+    """Train clarity scoring model."""
+    if not NEURAL_AVAILABLE:
+        print("Neural models not available")

@@ -1021,3 +1021,14 @@ class AIStabilityFramework:
             "thresholds_passed": {
                 "coherence": coherence_passed,
                 "clarity": clarity_passed,
+                "redundancy": redundancy_passed,
+            },
+            "scaling_analysis": self.context_analyzer.analyze_scaling_behavior(),
+        }
+        
+        self.operations.append(result)
+        
+        self.logger.logger.info(
+            f"Operation complete: signal_quality={signal_quality}, "
+            f"coherence={coherence:.3f}"
+        )

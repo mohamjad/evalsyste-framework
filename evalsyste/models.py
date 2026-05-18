@@ -53,3 +53,14 @@ class EvalCase:
 class ModelTurn:
     """One model answer in a session."""
 
+    prompt: str
+    response: str
+    declared_intent: str | None = None
+    metadata: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass(frozen=True)
+class SessionTrace:
+    """Multi-turn trace used for intent-drift checks."""
+
+    id: str

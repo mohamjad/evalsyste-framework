@@ -460,3 +460,14 @@ class SignalMetricsCalculator:
         # Calculate confidence interval if statistical analyzer available
         ci_info = ""
         if self.statistical_analyzer and len(scores) > 1:
+            mean, lower, upper = self.statistical_analyzer.calculate_confidence_interval(scores)
+            ci_info = f" (95% CI: [{lower:.3f}, {upper:.3f}])"
+        
+        self.logger.log_calculation(
+            component="SignalMetricsCalculator",
+            operation="Calculate Clarity Score",
+            inputs={"statements_count": len(statements), "method": "information_theoretic"},
+            formula="weighted combination of information_content, word_score, specificity, concrete_language",
+            calculation=f"Average of {len(scores)} statement clarity scores = {avg_clarity:.4f}{ci_info}",
+            output=avg_clarity,
+            interpretation="Clarity score based on information content and specificity"

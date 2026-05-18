@@ -97,3 +97,14 @@ class AuditLogger:
         console_handler.setFormatter(formatter)
         self.logger.addHandler(console_handler)
     
+    def log_calculation(self, component: str, operation: str, 
+                       inputs: Dict[str, Any], formula: str,
+                       calculation: str, output: Any, interpretation: str):
+        """Log a calculation with full transparency."""
+        msg = f"""
+Operation: {operation}
+Component: {component}
+Input: {inputs}
+Formula: {formula}
+Calculation: {calculation}
+Output: {output}

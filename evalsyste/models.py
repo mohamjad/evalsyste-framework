@@ -64,3 +64,14 @@ class SessionTrace:
     """Multi-turn trace used for intent-drift checks."""
 
     id: str
+    turns: tuple[ModelTurn, ...]
+    target_intent: str
+    metadata: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass(frozen=True)
+class EvalResult:
+    """Score payload for one eval case."""
+
+    case_id: str
+    score: float

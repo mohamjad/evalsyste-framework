@@ -20,3 +20,14 @@ def test_lexical_contradiction_detects_antonyms():
 def test_redundancy_increases_for_duplicate_text():
     """Repeated content should look more redundant than distinct content."""
     analyzer = SemanticAnalyzer(use_embeddings=False)
+
+    duplicate_score = analyzer.calculate_semantic_redundancy(
+        ["signal is clear", "signal is clear", "signal is clear"]
+    )
+    mixed_score = analyzer.calculate_semantic_redundancy(
+        ["signal is clear", "context expanded", "contradictions appeared"]
+    )
+
+    assert duplicate_score > mixed_score
+
+

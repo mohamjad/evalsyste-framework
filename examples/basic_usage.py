@@ -130,3 +130,14 @@ def example_3_custom_thresholds():
     framework = AIStabilityFramework(
         log_file="example3.log",
         log_level="INFO",
+        custom_thresholds=custom_config
+    )
+    
+    print(f"Using custom thresholds:")
+    print(f"  Coherence minimum: {framework.thresholds['coherence_minimum']}")
+    print(f"  Clarity minimum: {framework.thresholds['clarity_minimum']}")
+    print(f"  Redundancy maximum: {framework.thresholds['redundancy_maximum']}")
+    
+    # Test with borderline case
+    result = framework.process_operation(
+        operation_description="Test with custom thresholds",

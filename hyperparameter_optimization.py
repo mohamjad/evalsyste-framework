@@ -141,3 +141,14 @@ class BayesianOptimizer:
         ucb = mu + beta * sigma
         return ucb
     
+    def _select_next_point(self) -> Dict[str, float]:
+        """Select next point to evaluate using acquisition function."""
+        if len(self.X) < self.n_initial:
+            # Random sampling for initial points
+            return self._random_sample()
+        
+        if not SKLEARN_AVAILABLE or not self.gp:
+            # Fallback: random search
+            return self._random_sample()
+        
+        # Fit GP model

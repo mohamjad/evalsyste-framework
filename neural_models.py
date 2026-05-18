@@ -31,3 +31,14 @@ class ContradictionDetectionModel(nn.Module):
     - Classification head (binary: contradiction or not)
     
     Can be trained end-to-end on contradiction datasets.
+    """
+    
+    def __init__(self, 
+                 embedding_dim: int = 384,
+                 hidden_dim: int = 256,
+                 num_layers: int = 2,
+                 dropout: float = 0.1,
+                 use_pretrained: bool = True):
+        super().__init__()
+        
+        self.embedding_dim = embedding_dim

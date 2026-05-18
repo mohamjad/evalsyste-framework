@@ -339,3 +339,14 @@ class ModelTrainer:
         """Validate model."""
         self.model.eval()
         total_loss = 0.0
+        num_batches = 0
+        
+        with torch.no_grad():
+            for batch in dataloader:
+                outputs = self.model(*batch[:-1])
+                targets = batch[-1].to(self.device)
+                loss = criterion(outputs.squeeze(), targets)
+                total_loss += loss.item()
+                num_batches += 1
+        
+        avg_loss = total_loss / num_batches if num_batches > 0 else 0.0

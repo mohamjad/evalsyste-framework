@@ -9,3 +9,14 @@ def test_framework_self_verifies_and_initializes(tmp_path):
     framework = AIStabilityFramework(log_file=str(log_path), log_level="ERROR")
 
     assert framework.verified is True
+    assert framework.operation_count == 0
+    assert framework.thresholds["coherence_minimum"] == 0.75
+
+
+def test_process_operation_detects_contradictions(tmp_path):
+    """Obvious contradictions should reduce coherence and register in metrics."""
+    framework = AIStabilityFramework(log_file=str(tmp_path / "contradiction.log"), log_level="ERROR")
+
+    result = framework.process_operation(
+        operation_description="contradiction check",
+        statements=[

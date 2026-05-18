@@ -163,3 +163,14 @@ def train_clarity_model(data_path: str, epochs: int = 50):
     
     # Train (use MSE for regression)
     print("Training clarity scoring model...")
+    # Modify trainer to use MSE
+    criterion = nn.MSELoss()
+    for epoch in range(epochs):
+        model.train()
+        total_loss = 0.0
+        for batch in train_loader:
+            emb, target = batch
+            trainer.optimizer.zero_grad()
+            output = model(emb)
+            loss = criterion(output.squeeze(), target)
+            loss.backward()

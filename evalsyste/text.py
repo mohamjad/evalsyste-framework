@@ -20,3 +20,14 @@ def jaccard_similarity(left: str, right: str) -> float:
     if not left_tokens and not right_tokens:
         return 1.0
     if not left_tokens or not right_tokens:
+        return 0.0
+    return len(left_tokens & right_tokens) / len(left_tokens | right_tokens)
+
+
+def coverage_score(answer: str, references: tuple[str, ...]) -> float:
+    if not references:
+        return 0.0
+    return max(jaccard_similarity(answer, reference) for reference in references)
+
+
+def lexical_entropy(text: str) -> float:

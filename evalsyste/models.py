@@ -31,3 +31,14 @@ class EvidenceItem:
     """Evidence that can support or attack a model answer."""
 
     source: str
+    claim: str
+    supports: bool = True
+    weight: float = 1.0
+
+
+@dataclass(frozen=True)
+class EvalCase:
+    """Single eval task with optional references and rubric criteria."""
+
+    id: str
+    prompt: str

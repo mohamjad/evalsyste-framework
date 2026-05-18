@@ -372,3 +372,14 @@ class ModelTrainer:
                 self.best_loss = val_loss
                 patience_counter = 0
             else:
+                patience_counter += 1
+                if patience_counter >= early_stopping_patience:
+                    break
+        
+        return self.training_history
+    
+    def save_model(self, path: str):
+        """Save model checkpoint."""
+        torch.save({
+            'model_state_dict': self.model.state_dict(),
+            'optimizer_state_dict': self.optimizer.state_dict(),

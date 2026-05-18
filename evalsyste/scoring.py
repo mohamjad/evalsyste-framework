@@ -31,3 +31,14 @@ def evidence_support_score(answer: str, evidence: tuple[EvidenceItem, ...]) -> f
         if not item.supports and not claim_present:
             support += weight
     return support / total if total else 0.0
+
+
+def rubric_proxy_scores(
+    answer: str,
+    references: tuple[str, ...],
+    evidence: tuple[EvidenceItem, ...],
+) -> dict[str, float]:
+    flags = contradiction_flags(answer)
+    return {
+        "reference_coverage": coverage_score(answer, references),
+        "evidence_support": evidence_support_score(answer, evidence),

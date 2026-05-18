@@ -669,3 +669,14 @@ class ContextWindowAnalyzer:
         # Calculate efficiency at each snapshot
         efficiencies = []
         coherence_values = []
+        context_sizes = []
+        
+        for snapshot in self.snapshots:
+            if snapshot.context_size > 0:
+                eff = snapshot.coherence / snapshot.context_size
+                efficiencies.append((snapshot.context_size, eff))
+                coherence_values.append(snapshot.coherence)
+                context_sizes.append(snapshot.context_size)
+        
+        if len(efficiencies) < 2:
+            return {

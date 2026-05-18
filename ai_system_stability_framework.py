@@ -361,3 +361,14 @@ class SignalMetricsCalculator:
                 pass
         
         # Initialize neural models if available
+        self.neural_clarity_model = None
+        self.neural_redundancy_model = None
+        if NEURAL_AVAILABLE:
+            try:
+                self.neural_clarity_model = ClarityScoringModel()
+                self.neural_redundancy_model = RedundancyDetectionModel()
+                # Try to load pre-trained weights
+                try:
+                    import os
+                    if os.path.exists("models/clarity_model.pt"):
+                        checkpoint = torch.load("models/clarity_model.pt", map_location='cpu')

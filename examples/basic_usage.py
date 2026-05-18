@@ -152,3 +152,14 @@ def example_3_custom_thresholds():
     print(f"\nResults:")
     print(f"  Coherence: {result['metrics']['coherence']:.3f} "
           f"({'PASS' if result['thresholds_passed']['coherence'] else 'FAIL'})")
+    print(f"  Clarity: {result['metrics']['clarity']:.3f} "
+          f"({'PASS' if result['thresholds_passed']['clarity'] else 'FAIL'})")
+    print(f"  Redundancy: {result['metrics']['redundancy']:.3f} "
+          f"({'PASS' if result['thresholds_passed']['redundancy'] else 'FAIL'})")
+
+
+def example_4_continuous_monitoring():
+    """Example: Continuous monitoring of a long-running process."""
+    print("\n" + "=" * 60)
+    print("Example 4: Continuous Monitoring")
+    print("=" * 60)

@@ -163,3 +163,14 @@ class StatisticalAnalyzer:
         numerator = sum((x[i] - mean_x) * (values[i] - mean_y) for i in range(n))
         denominator = sum((x[i] - mean_x) ** 2 for i in range(n))
         
+        if denominator == 0:
+            slope = 0.0
+        else:
+            slope = numerator / denominator
+        
+        intercept = mean_y - slope * mean_x
+        
+        # Calculate correlation coefficient
+        std_x = statistics.stdev(x) if len(x) > 1 else 1.0
+        std_y = statistics.stdev(values) if n > 1 else 1.0
+        

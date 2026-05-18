@@ -295,3 +295,14 @@ class ModelTrainer:
         self.device = device or torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         self.model.to(self.device)
         
+        self.optimizer = torch.optim.Adam(
+            self.model.parameters(),
+            lr=learning_rate,
+            weight_decay=weight_decay
+        )
+        
+        self.scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+            self.optimizer, mode='min', factor=0.5, patience=5
+        )
+        
+        self.best_loss = float('inf')

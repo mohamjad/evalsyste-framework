@@ -295,3 +295,14 @@ class CoherenceTracker:
         
         if n <= 1:
             self.logger.logger.debug("Only 1 statement, no contradictions possible")
+            return 1.0
+        
+        # Calculate pairs
+        total_pairs = n * (n - 1) // 2
+        contradictions_count = len(self.contradictions)
+        
+        # Calculate score
+        coherence = 1.0 - (contradictions_count / total_pairs) if total_pairs > 0 else 1.0
+        
+        # Log the calculation
+        self.logger.log_calculation(

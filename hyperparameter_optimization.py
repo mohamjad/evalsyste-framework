@@ -119,3 +119,14 @@ class BayesianOptimizer:
         sigma = np.maximum(sigma, 1e-9)
         
         Z = (mu - f_best - xi) / sigma
+        
+        # Standard normal CDF and PDF
+        phi = (1.0 / math.sqrt(2 * math.pi)) * np.exp(-0.5 * Z**2)
+        Phi = 0.5 * (1 + np.sign(Z) * (1 - np.exp(-2 * Z**2 / math.pi)))
+        
+        ei = (mu - f_best - xi) * Phi + sigma * phi
+        ei = np.maximum(ei, 0)  # EI is non-negative
+        
+        return ei
+    
+    def _upper_confidence_bound(self, X_candidate: np.ndarray, beta: float = 2.0) -> np.ndarray:

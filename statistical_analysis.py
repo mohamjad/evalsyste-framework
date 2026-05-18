@@ -64,3 +64,14 @@ class StatisticalAnalyzer:
         if n >= 30:
             t_critical = 1.96  # Normal approximation
         elif n >= 10:
+            t_critical = 2.262  # t-distribution, df=9, alpha=0.05
+        elif n >= 5:
+            t_critical = 2.776  # t-distribution, df=4
+        else:
+            t_critical = 3.182  # t-distribution, df=3
+        
+        margin = t_critical * std_error
+        
+        return mean, mean - margin, mean + margin
+    
+    def test_significance(self, sample1: List[float], sample2: List[float]) -> Tuple[bool, float, str]:

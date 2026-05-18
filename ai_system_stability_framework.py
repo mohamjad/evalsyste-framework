@@ -240,3 +240,14 @@ class CoherenceTracker:
                 is_contradiction, confidence, reason = self.semantic_analyzer.detect_contradiction(
                     stmt1.content, stmt2.content
                 )
+                if is_contradiction:
+                    return True, f"{reason} (confidence: {confidence:.2f})"
+            except Exception as e:
+                self.logger.logger.debug(f"Semantic analysis failed: {e}, falling back to lexical")
+        
+        # Fallback: lexical pattern matching
+        content1 = stmt1.content.lower()
+        content2 = stmt2.content.lower()
+        
+        # Antonym patterns
+        opposites = [

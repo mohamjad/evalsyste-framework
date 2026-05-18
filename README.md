@@ -75,3 +75,7 @@ Heuristic scores are not truth. They are pressure tests.
 Use this to expose weak behavior, compare runs, and force eval assumptions into
 code.
 
+More detail:
+
+- [`docs/EVAL_THESES.md`](docs/EVAL_THESES.md)
+- [`docs/SCENARIO_MATRIX.md`](docs/SCENARIO_MATRIX.md)

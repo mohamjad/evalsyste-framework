@@ -306,3 +306,14 @@ class CoherenceTracker:
         
         # Log the calculation
         self.logger.log_calculation(
+            component="CoherenceTracker",
+            operation="Calculate Coherence Score",
+            inputs={
+                "statements_count": n,
+                "contradictions_count": contradictions_count
+            },
+            formula="coherence = 1.0 - (contradictions / total_possible_pairs)",
+            calculation=f"1.0 - ({contradictions_count} / {total_pairs}) = {coherence:.4f}",
+            output=coherence,
+            interpretation=self._interpret_coherence(coherence)
+        )

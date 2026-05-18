@@ -20,3 +20,14 @@ This repository is intentionally scoped as a lightweight monitoring and experime
 
 - It is not a benchmark standard like `openai/evals`.
 - It is not a production-grade LLM safety system.
+- It does not provide calibrated scientific measures of coherence or clarity.
+- It does not establish new evaluation research on its own.
+
+## Recommended Use
+
+- debugging prompt or system behavior
+- comparing heuristic stability trends across runs
+- instrumenting experiments where traceability matters more than leaderboard rigor
+
+## Not Recommended As
+

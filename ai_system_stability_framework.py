@@ -317,3 +317,14 @@ class CoherenceTracker:
             output=coherence,
             interpretation=self._interpret_coherence(coherence)
         )
+        
+        return coherence
+    
+    def _interpret_coherence(self, score: float) -> str:
+        """Interpret coherence score in plain English."""
+        if score >= 0.95:
+            return "Excellent coherence - system is logically consistent"
+        elif score >= 0.85:
+            return "Good coherence - minor inconsistencies only"
+        elif score >= 0.75:
+            return "Acceptable coherence - some contradictions present"

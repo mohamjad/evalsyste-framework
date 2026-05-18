@@ -130,3 +130,14 @@ class BayesianOptimizer:
         return ei
     
     def _upper_confidence_bound(self, X_candidate: np.ndarray, beta: float = 2.0) -> np.ndarray:
+        """Upper Confidence Bound acquisition function."""
+        if not self.gp or len(self.y) == 0:
+            return np.ones(len(X_candidate))
+        
+        mu, sigma = self.gp.predict(X_candidate, return_std=True)
+        mu = mu.flatten()
+        sigma = sigma.flatten()
+        
+        ucb = mu + beta * sigma
+        return ucb
+    

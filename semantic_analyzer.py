@@ -273,3 +273,14 @@ class SemanticAnalyzer:
         
         # Tokenize
         words = re.findall(r'\b\w+\b', text.lower())
+        if not words:
+            return 0.0
+        
+        # Calculate word frequency
+        word_counts = Counter(words)
+        total_words = len(words)
+        
+        # Calculate Shannon entropy
+        entropy = 0.0
+        for count in word_counts.values():
+            probability = count / total_words

@@ -64,3 +64,12 @@ def main():
     
     # Generate report
     print("\n5. Generating report...")
+    report = framework.generate_stability_report()
+    print("   [OK] Report generated")
+    
+    print("\n" + "=" * 50)
+    print("All tests passed!")
+    print("=" * 50)
+
+if __name__ == "__main__":
+    main()

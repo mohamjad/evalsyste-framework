@@ -119,3 +119,14 @@ class StatisticalAnalyzer:
         elif abs(t_statistic) > 2.5:
             p_value = 0.01
         elif abs(t_statistic) > 2.0:
+            p_value = 0.05
+        elif abs(t_statistic) > 1.96:
+            p_value = 0.05
+        else:
+            p_value = 0.1
+        
+        interpretation = f"t={t_statistic:.3f}, df={df}, p≈{p_value:.3f}"
+        
+        return is_significant, p_value, interpretation
+    
+    def analyze_trend(self, values: List[float], timestamps: Optional[List[float]] = None) -> Dict[str, Any]:

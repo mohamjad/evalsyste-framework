@@ -867,3 +867,14 @@ class SelfVerifier:
         threshold = 0.75
         
         passed = coherence >= threshold
+        assert not passed, "Threshold check should fail at 0.70"
+        
+        coherence = 0.80  # Above threshold
+        passed = coherence >= threshold
+        assert passed, "Threshold check should pass at 0.80"
+        
+        self.logger.logger.info("[PASS] Threshold Checking")
+
+
+class AIStabilityFramework:
+    """

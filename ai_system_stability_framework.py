@@ -383,3 +383,14 @@ class SignalMetricsCalculator:
     
     def calculate_clarity_score(self, statements: List[Statement]) -> float:
         """
+        Calculate clarity score using information-theoretic measures.
+        
+        Based on Shannon entropy and specificity metrics.
+        Combines:
+        - Information content (entropy-based)
+        - Specificity markers (numbers, proper nouns)
+        - Concrete language ratio
+        
+        References:
+        - Shannon (1948): Information Theory
+        - Resnik (1995): Semantic specificity measures

@@ -185,3 +185,14 @@ class StatisticalAnalyzer:
             # Approximate p-value
             if abs(t_stat) > 3.0:
                 p_value = 0.001
+            elif abs(t_stat) > 2.0:
+                p_value = 0.05
+            else:
+                p_value = 0.1
+        else:
+            p_value = 1.0
+        
+        is_significant = p_value < 0.05
+        
+        # Determine trend direction
+        if abs(slope) < 1e-6:

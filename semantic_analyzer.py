@@ -218,3 +218,14 @@ class SemanticAnalyzer:
             for j in range(i + 1, len(word_sets)):
                 intersection = len(word_sets[i] & word_sets[j])
                 union = len(word_sets[i] | word_sets[j])
+                if union > 0:
+                    jaccard = intersection / union
+                    similarities.append(jaccard)
+        
+        if not similarities:
+            return 0.0
+        
+        # Average redundancy
+        avg_redundancy = sum(similarities) / len(similarities)
+        return avg_redundancy
+    

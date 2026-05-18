@@ -427,3 +427,14 @@ class SignalMetricsCalculator:
             if word_count == 0:
                 word_score = 0.0
             elif word_count < 5:
+                word_score = word_count / 10.0  # Too short
+            elif word_count <= 25:
+                word_score = min(1.0, 0.5 + (word_count - 5) / 40.0)  # Optimal range
+            else:
+                word_score = max(0.7, 1.0 - (word_count - 25) / 100.0)  # Diminishing returns
+            
+            # Specificity markers (numbers, dates, proper nouns)
+            has_numbers = any(char.isdigit() for char in content)
+            has_caps = any(char.isupper() and char.isalpha() for char in content)
+            specificity_score = 0.0
+            if has_numbers:

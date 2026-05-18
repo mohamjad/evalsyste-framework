@@ -108,3 +108,14 @@ class MonitoredAISystem:
         else:
             # Default estimate
             return 1000
+    
+    def get_stability_report(self) -> str:
+        """Get current stability report."""
+        return self.monitor.generate_stability_report()
+
+
+# Example usage with a mock AI system
+class MockAISystem:
+    """Simple mock AI system for demonstration."""
+    
+    def __init__(self):

@@ -262,3 +262,14 @@ class SemanticAnalyzer:
             return self._lexical_redundancy(texts)
     
     def calculate_information_content(self, text: str) -> float:
+        """
+        Calculate information content using Shannon entropy.
+        
+        Based on information theory (Shannon, 1948).
+        Higher entropy = more information content.
+        """
+        if not text:
+            return 0.0
+        
+        # Tokenize
+        words = re.findall(r'\b\w+\b', text.lower())

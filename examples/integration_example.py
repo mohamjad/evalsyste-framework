@@ -53,3 +53,14 @@ class MonitoredAISystem:
             context_size=context_size
         )
         
+        # Add monitoring metadata to response
+        if isinstance(response, dict):
+            response['stability_metrics'] = stability_result['metrics']
+            response['signal_quality'] = stability_result['signal_quality']
+            response['thresholds_passed'] = stability_result['thresholds_passed']
+        else:
+            # If response is an object, add attributes
+            response.stability_metrics = stability_result['metrics']
+            response.signal_quality = stability_result['signal_quality']
+            response.thresholds_passed = stability_result['thresholds_passed']
+        

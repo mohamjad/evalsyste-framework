@@ -900,3 +900,14 @@ class AIStabilityFramework:
         # Set up logging
         self.logger = AuditLogger(log_file, log_level)
         self.logger.logger.info("Initializing AI Stability Framework")
+        
+        # Thresholds
+        self.thresholds = {
+            "coherence_minimum": 0.75,
+            "clarity_minimum": 0.70,
+            "redundancy_maximum": 0.40,
+        }
+        if custom_thresholds:
+            self.thresholds.update(custom_thresholds)
+        
+        # Initialize components (with semantic analysis enabled)

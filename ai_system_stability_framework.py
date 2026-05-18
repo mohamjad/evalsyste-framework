@@ -625,3 +625,14 @@ class ContextWindowAnalyzer:
     
     def __init__(self, logger: AuditLogger):
         self.logger = logger
+        self.snapshots: List[ContextSnapshot] = []
+        
+        # Initialize statistical analyzer
+        self.statistical_analyzer = None
+        if STATISTICAL_AVAILABLE:
+            try:
+                self.statistical_analyzer = StatisticalAnalyzer(confidence_level=0.95)
+            except Exception:
+                pass
+    
+    def capture_snapshot(self, context_size: int, coherence: float, 

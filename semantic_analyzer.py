@@ -20,3 +20,14 @@ except ImportError:
     SentenceTransformer = None
     np = None
 
+
+class SemanticAnalyzer:
+    """
+    Optional semantic-analysis helper.
+
+    Uses multiple techniques:
+    1. Embedding-based semantic similarity (cosine similarity)
+    2. Lexical contradiction patterns (antonyms, negations)
+    3. Information-theoretic measures
+    """
+    

@@ -658,3 +658,14 @@ class ContextWindowAnalyzer:
         Analyze scaling behavior with statistical significance testing.
         
         Uses linear regression and correlation analysis to determine trends.
+        """
+        if len(self.snapshots) < 2:
+            return {
+                "trend": "INSUFFICIENT_DATA",
+                "recommendation": "Need at least 2 snapshots to analyze scaling",
+                "statistical_significance": False
+            }
+        
+        # Calculate efficiency at each snapshot
+        efficiencies = []
+        coherence_values = []

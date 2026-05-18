@@ -152,3 +152,14 @@ class SemanticAnalyzer:
         Detect contradictions using semantic embeddings.
         
         Uses cosine similarity between embeddings. Low similarity with
+        high semantic relatedness indicates contradiction.
+        """
+        if not self.model:
+            return 0.0, ""
+        
+        try:
+            # Get embeddings
+            embeddings = self.model.encode([text1, text2])
+            emb1, emb2 = embeddings[0], embeddings[1]
+            
+            # Cosine similarity

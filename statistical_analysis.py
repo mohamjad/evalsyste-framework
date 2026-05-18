@@ -86,3 +86,14 @@ class StatisticalAnalyzer:
         if not sample1 or not sample2:
             return False, 1.0, "insufficient data"
         
+        n1, n2 = len(sample1), len(sample2)
+        mean1, mean2 = statistics.mean(sample1), statistics.mean(sample2)
+        
+        if n1 < 2 or n2 < 2:
+            return False, 1.0, "insufficient data for test"
+        
+        # Sample variances
+        var1 = statistics.variance(sample1) if n1 > 1 else 0.0
+        var2 = statistics.variance(sample2) if n2 > 1 else 0.0
+        
+        # Welch's t-test statistic

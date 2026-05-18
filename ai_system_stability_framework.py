@@ -702,3 +702,14 @@ class ContextWindowAnalyzer:
             except Exception as e:
                 self.logger.logger.debug(f"Statistical analysis failed: {e}")
         
+        # Determine trend (with statistical significance if available)
+        first_eff = efficiencies[0][1]
+        last_eff = efficiencies[-1][1]
+        
+        if first_eff == 0:
+            trend = "UNKNOWN"
+        elif trend_stats.get("is_significant", False):
+            # Use statistically significant trend
+            trend = trend_stats["trend"].upper()
+        elif last_eff > first_eff * 1.1:
+            trend = "AMPLIFYING"

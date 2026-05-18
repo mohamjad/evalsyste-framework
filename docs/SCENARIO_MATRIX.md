@@ -20,3 +20,14 @@ Scored by:
 - declared intent stability
 - response focus
 
+## Context decay
+
+More context reduces coherence instead of improving it.
+
+Scored by:
+
+- contradiction count
+- coherence trend
+- redundancy and clarity signals
+
+## Non-verifiable synthesis

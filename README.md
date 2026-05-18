@@ -9,3 +9,14 @@ most useful evals are not just "match the answer key"
 ```
 
 This repo scores the parts that usually get hand-waved:
+
+- evidence use
+- contradiction risk
+- non-verifiable work
+- intent drift across turns
+- clarity under growing context
+- stability signals over repeated operations
+
+It keeps the implementation small and inspectable. No giant platform. No fake
+research claims. Just structured eval objects, scorers, runners, fixtures, and
+tests.

@@ -977,3 +977,14 @@ class AIStabilityFramework:
             "coherence", coherence, self.thresholds["coherence_minimum"], coherence_passed
         )
         self.logger.log_threshold_check(
+            "clarity", clarity, self.thresholds["clarity_minimum"], clarity_passed
+        )
+        self.logger.log_threshold_check(
+            "redundancy", redundancy, self.thresholds["redundancy_maximum"], redundancy_passed
+        )
+        
+        # Determine signal quality
+        if len(self.coherence_tracker.contradictions) > 0 and coherence < 0.75:
+            signal_quality = "NOISY"
+        elif efficiency is not None:
+            if efficiency > 1.1:

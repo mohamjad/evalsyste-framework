@@ -328,3 +328,14 @@ class CoherenceTracker:
             return "Good coherence - minor inconsistencies only"
         elif score >= 0.75:
             return "Acceptable coherence - some contradictions present"
+        else:
+            return "Poor coherence - significant contradictions detected"
+
+
+class SignalMetricsCalculator:
+    """
+    Calculates lightweight signal-quality metrics.
+    """
+    
+    def __init__(self, logger: AuditLogger, coherence_tracker: CoherenceTracker):
+        self.logger = logger

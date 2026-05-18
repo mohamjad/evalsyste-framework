@@ -306,3 +306,14 @@ class ModelTrainer:
         )
         
         self.best_loss = float('inf')
+        self.training_history = []
+    
+    def train_epoch(self, dataloader, criterion):
+        """Train for one epoch."""
+        self.model.train()
+        total_loss = 0.0
+        num_batches = 0
+        
+        for batch in dataloader:
+            self.optimizer.zero_grad()
+            

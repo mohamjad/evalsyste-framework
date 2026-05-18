@@ -9,3 +9,14 @@ description = "Lightweight toolkit for monitoring contradiction, clarity, and st
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
+authors = [
+  { name = "mohamjad", email = "mohammedamjad526@gmail.com" }
+]
+dependencies = [
+  "numpy>=1.21.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "pytest-cov>=5.0.0"

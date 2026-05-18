@@ -1043,3 +1043,14 @@ class AIStabilityFramework:
         report = f"""
 === AI SYSTEM STABILITY REPORT ===
 
+Operations Processed: {self.operation_count}
+Total Statements: {len(self.coherence_tracker.statements)}
+Contradictions Detected: {len(self.coherence_tracker.contradictions)}
+
+Current Metrics:
+  Coherence Score: {coherence:.3f} (threshold: {self.thresholds['coherence_minimum']})
+  {'PASS' if coherence >= self.thresholds['coherence_minimum'] else 'FAIL'}
+
+Scaling Behavior:
+  Trend: {scaling_analysis.get('trend', 'UNKNOWN')}
+  Recommendation: {scaling_analysis.get('recommendation', 'N/A')}

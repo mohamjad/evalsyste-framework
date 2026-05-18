@@ -53,3 +53,6 @@ def contradiction_flags(text: str) -> tuple[str, ...]:
         ("certain", "uncertain"),
     )
     for left, right in pairs:
+        if left in tokens and right in tokens:
+            flags.append(f"{left}/{right}")
+    return tuple(flags)

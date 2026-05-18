@@ -471,3 +471,14 @@ class SignalMetricsCalculator:
             calculation=f"Average of {len(scores)} statement clarity scores = {avg_clarity:.4f}{ci_info}",
             output=avg_clarity,
             interpretation="Clarity score based on information content and specificity"
+        )
+        
+        return avg_clarity
+    
+    def calculate_redundancy_ratio(self, statements: List[Statement]) -> float:
+        """
+        Calculate semantic redundancy ratio.
+        
+        Uses semantic similarity (embeddings) if available, falls back to lexical.
+        
+        Formula: average pairwise semantic similarity

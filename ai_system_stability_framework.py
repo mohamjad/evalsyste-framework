@@ -163,3 +163,14 @@ class CoherenceTracker:
         self.neural_contradiction_model = None
         if use_semantic and NEURAL_AVAILABLE:
             try:
+                self.neural_contradiction_model = ContradictionDetectionModel()
+                # Try to load pre-trained weights if available
+                try:
+                    import os
+                    model_path = "models/contradiction_model.pt"
+                    if os.path.exists(model_path):
+                        checkpoint = torch.load(model_path, map_location='cpu')
+                        self.neural_contradiction_model.load_state_dict(checkpoint['model_state_dict'])
+                        self.logger.logger.info("Loaded pre-trained contradiction detection model")
+                except Exception:
+                    self.logger.logger.debug("No pre-trained contradiction model found, using random initialization")

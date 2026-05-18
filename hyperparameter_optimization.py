@@ -163,3 +163,14 @@ class BayesianOptimizer:
         
         # Optimize acquisition function
         best_point = None
+        best_acq = -float('inf')
+        
+        # Sample candidate points
+        n_candidates = 1000
+        candidates = []
+        for _ in range(n_candidates):
+            candidates.append(self._random_sample())
+        
+        X_candidates = np.array([self._point_to_vector(p) for p in candidates])
+        
+        # Calculate acquisition values

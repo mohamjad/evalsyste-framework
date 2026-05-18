@@ -218,3 +218,14 @@ class CoherenceTracker:
         # Try neural model first if available
         if self.neural_contradiction_model and NEURAL_AVAILABLE and SEMANTIC_AVAILABLE:
             try:
+                # Get embeddings from semantic analyzer
+                if self.semantic_analyzer and self.semantic_analyzer.model:
+                    emb1 = self.semantic_analyzer.model.encode([stmt1.content])[0]
+                    emb2 = self.semantic_analyzer.model.encode([stmt2.content])[0]
+                    
+                    emb1_tensor = torch.tensor(emb1).unsqueeze(0)
+                    emb2_tensor = torch.tensor(emb2).unsqueeze(0)
+                    
+                    is_contradiction, confidence = self.neural_contradiction_model.predict(
+                        emb1_tensor, emb2_tensor, threshold=0.5
+                    )

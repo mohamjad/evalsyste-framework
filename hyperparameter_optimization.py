@@ -108,3 +108,14 @@ class BayesianOptimizer:
         """
         if not self.gp or len(self.y) == 0:
             return np.ones(len(X_candidate))
+        
+        mu, sigma = self.gp.predict(X_candidate, return_std=True)
+        mu = mu.flatten()
+        sigma = sigma.flatten()
+        
+        f_best = max(self.y) if self.y else 0.0
+        
+        # Avoid division by zero
+        sigma = np.maximum(sigma, 1e-9)
+        
+        Z = (mu - f_best - xi) / sigma

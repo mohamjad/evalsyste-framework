@@ -185,3 +185,14 @@ class ClarityScoringModel(nn.Module):
         Args:
             statement_embedding: Statement embedding [batch_size, input_dim]
         
+        Returns:
+            Clarity score [batch_size, 1]
+        """
+        return self.network(statement_embedding)
+    
+    def predict(self, statement_embedding: torch.Tensor) -> float:
+        """Predict clarity score."""
+        self.eval()
+        with torch.no_grad():
+            score = self.forward(statement_embedding)
+            return score.item()

@@ -196,3 +196,14 @@ class StatisticalAnalyzer:
         
         # Determine trend direction
         if abs(slope) < 1e-6:
+            trend = "stable"
+        elif slope > 0:
+            trend = "increasing" if is_significant else "slightly_increasing"
+        else:
+            trend = "decreasing" if is_significant else "slightly_decreasing"
+        
+        return {
+            "trend": trend,
+            "slope": slope,
+            "intercept": intercept,
+            "correlation": correlation,

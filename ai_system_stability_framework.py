@@ -1076,3 +1076,14 @@ if __name__ == "__main__":
     print("=" * 50)
     
     framework = AIStabilityFramework(log_file="stability.log", log_level="INFO")
+    
+    print("\nFramework initialized successfully!")
+    print("Check stability.log for detailed logs.")
+    
+    # Example operation
+    result = framework.process_operation(
+        operation_description="Example operation",
+        statements=[
+            "System initialized",
+            "Processing user query",
+            "Generated response"

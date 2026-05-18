@@ -42,3 +42,8 @@ Scored by:
 - information density
 
 ## Tool trace collapse
+
+The final answer hides a bad process.
+
+Tracked by downstream runners through trace metrics; this repo keeps the
+scoring objects small enough to plug into those runners.

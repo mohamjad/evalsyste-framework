@@ -31,3 +31,14 @@ def test_process_operation_detects_contradictions(tmp_path):
     assert result["metrics"]["coherence"] < 1.0
 
 
+def test_custom_thresholds_are_applied(tmp_path):
+    """Caller-supplied thresholds should override defaults."""
+    framework = AIStabilityFramework(
+        log_file=str(tmp_path / "custom.log"),
+        log_level="ERROR",
+        custom_thresholds={"coherence_minimum": 0.9},
+    )
+
+    assert framework.thresholds["coherence_minimum"] == 0.9
+
+

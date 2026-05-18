@@ -20,3 +20,14 @@ import os
 try:
     from neural_models import (
         ContradictionDetectionModel, 
+        ClarityScoringModel, 
+        RedundancyDetectionModel,
+        ModelTrainer
+    )
+    from semantic_analyzer import SemanticAnalyzer
+    NEURAL_AVAILABLE = True
+except ImportError:
+    print("Error: neural_models not available. Install PyTorch: pip install torch")
+    NEURAL_AVAILABLE = False
+
+

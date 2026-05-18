@@ -317,3 +317,14 @@ class ModelTrainer:
         for batch in dataloader:
             self.optimizer.zero_grad()
             
+            # Forward pass
+            outputs = self.model(*batch[:-1])  # All but last element is target
+            targets = batch[-1].to(self.device)
+            
+            # Calculate loss
+            loss = criterion(outputs.squeeze(), targets)
+            
+            # Backward pass
+            loss.backward()
+            torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
+            self.optimizer.step()

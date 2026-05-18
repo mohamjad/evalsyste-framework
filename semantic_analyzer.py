@@ -174,3 +174,14 @@ class SemanticAnalyzer:
             
             # Contradiction score: low similarity suggests contradiction
             # But we need to check if topics are related first
+            # For now, use a simple heuristic: similarity < 0.3 suggests contradiction
+            contradiction_score = max(0.0, (0.3 - similarity) / 0.3)
+            
+            reason = f"semantic similarity: {similarity:.3f}"
+            return contradiction_score, reason
+            
+        except Exception as e:
+            return 0.0, f"embedding error: {str(e)}"
+    
+    def calculate_semantic_redundancy(self, texts: List[str]) -> float:
+        """

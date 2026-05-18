@@ -97,3 +97,14 @@ class SemanticAnalyzer:
         reason = f"{lexical_reason}"
         if semantic_reason:
             reason += f" | {semantic_reason}"
+        
+        return is_contradiction, combined_score, reason
+    
+    def _lexical_contradiction(self, text1: str, text2: str) -> Tuple[float, str]:
+        """
+        Detect contradictions using lexical patterns.
+        
+        Based on a small hand-authored list of antonym and negation cues.
+        """
+        score = 0.0
+        reasons = []

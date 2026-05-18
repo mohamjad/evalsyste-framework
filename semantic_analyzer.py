@@ -119,3 +119,14 @@ class SemanticAnalyzer:
             if (has_ant1_in_1 and has_ant2_in_2) or (has_ant2_in_1 and has_ant1_in_2):
                 score = max(score, 0.8)
                 reasons.append(f"antonym pair: '{ant1}' vs '{ant2}'")
+        
+        # Check for explicit negation
+        words1 = set(text1.split())
+        words2 = set(text2.split())
+        
+        # Remove negation markers and compare
+        core_words1 = words1 - set(self.negation_words)
+        core_words2 = words2 - set(self.negation_words)
+        
+        # If one has negation and core words overlap significantly
+        has_neg1 = any(neg in words1 for neg in self.negation_words)

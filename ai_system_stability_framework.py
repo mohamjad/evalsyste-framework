@@ -229,3 +229,14 @@ class CoherenceTracker:
                     is_contradiction, confidence = self.neural_contradiction_model.predict(
                         emb1_tensor, emb2_tensor, threshold=0.5
                     )
+                    if is_contradiction:
+                        return True, f"neural model prediction (confidence: {confidence:.2f})"
+            except Exception as e:
+                self.logger.logger.debug(f"Neural model failed: {e}, falling back to semantic")
+        
+        # Try semantic analysis if available
+        if self.semantic_analyzer:
+            try:
+                is_contradiction, confidence, reason = self.semantic_analyzer.detect_contradiction(
+                    stmt1.content, stmt2.content
+                )

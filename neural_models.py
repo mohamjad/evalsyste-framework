@@ -42,3 +42,14 @@ class ContradictionDetectionModel(nn.Module):
         super().__init__()
         
         self.embedding_dim = embedding_dim
+        self.use_pretrained = use_pretrained and TRANSFORMERS_AVAILABLE
+        
+        # Sentence encoder
+        if self.use_pretrained:
+            # Use pre-trained BERT/Sentence-BERT as encoder
+            self.encoder = None  # Will be initialized separately
+            self.encoder_dim = 384  # all-MiniLM-L6-v2 dimension
+        else:
+            # Learn embeddings from scratch
+            self.encoder = nn.Sequential(
+                nn.Linear(embedding_dim, hidden_dim),

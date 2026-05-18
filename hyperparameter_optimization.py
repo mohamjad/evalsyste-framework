@@ -152,3 +152,14 @@ class BayesianOptimizer:
             return self._random_sample()
         
         # Fit GP model
+        X_array = np.array([self._point_to_vector(x) for x in self.X])
+        y_array = np.array(self.y)
+        
+        try:
+            self.gp.fit(X_array, y_array)
+        except Exception:
+            # If GP fitting fails, use random
+            return self._random_sample()
+        
+        # Optimize acquisition function
+        best_point = None

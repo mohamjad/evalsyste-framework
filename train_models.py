@@ -64,3 +64,14 @@ class ClarityDataset(Dataset):
     
     def __len__(self):
         return len(self.statements)
+    
+    def __getitem__(self, idx):
+        statement = self.statements[idx]
+        score = self.scores[idx]
+        
+        emb = torch.tensor(self.encoder.encode([statement])[0], dtype=torch.float32)
+        score_tensor = torch.tensor(score, dtype=torch.float32)
+        
+        return emb, score_tensor
+
+

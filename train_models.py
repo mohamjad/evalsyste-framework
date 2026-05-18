@@ -130,3 +130,14 @@ def train_clarity_model(data_path: str, epochs: int = 50):
     """Train clarity scoring model."""
     if not NEURAL_AVAILABLE:
         print("Neural models not available")
+        return
+    
+    # Load data (example)
+    print("Note: Replace with your actual data loading")
+    statements = [
+        "the system processed the user query successfully",
+        "something happened maybe",
+        "temperature is 25.3 degrees celsius",
+        "stuff occurred",
+    ]
+    scores = [0.9, 0.3, 0.95, 0.2]

@@ -75,3 +75,14 @@ class StatisticalAnalyzer:
         return mean, mean - margin, mean + margin
     
     def test_significance(self, sample1: List[float], sample2: List[float]) -> Tuple[bool, float, str]:
+        """
+        Test if two samples are significantly different.
+        
+        Uses Welch's t-test (unequal variances).
+        
+        Returns:
+            (is_significant, p_value, interpretation)
+        """
+        if not sample1 or not sample2:
+            return False, 1.0, "insufficient data"
+        

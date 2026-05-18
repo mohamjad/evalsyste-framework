@@ -108,3 +108,14 @@ class ContradictionDetectionModel(nn.Module):
             sent1_emb: Sentence 1 embedding [batch_size, embedding_dim]
             sent2_emb: Sentence 2 embedding [batch_size, embedding_dim]
         
+        Returns:
+            Contradiction probability [batch_size, 1]
+        """
+        # Encode sentences
+        enc1 = self.encode_sentence(sent1_emb)
+        enc2 = self.encode_sentence(sent2_emb)
+        
+        # Calculate cosine similarity
+        cos_sim = F.cosine_similarity(enc1, enc2, dim=1, keepdim=True)
+        
+        # Concatenate features

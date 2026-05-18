@@ -42,3 +42,14 @@ class MonitoredAISystem:
         
         # Extract statements from response
         statements = self._extract_statements(response)
+        
+        # Get context size (adjust based on your system)
+        context_size = self._get_context_size()
+        
+        # Monitor stability
+        stability_result = self.monitor.process_operation(
+            operation_description=f"Processing: {str(input_data)[:50]}",
+            statements=statements,
+            context_size=context_size
+        )
+        

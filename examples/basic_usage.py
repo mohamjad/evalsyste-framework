@@ -53,3 +53,14 @@ def example_1_detecting_degradation():
     # Large context - degrading with contradictions
     print("\n3. Large context (2000 tokens) - introducing contradictions...")
     result3 = framework.process_operation(
+        operation_description="Extended processing",
+        statements=[
+            "User wants weather information",
+            "Location is London",
+            "Retrieved forecast data",
+            "Temperature is 15C",
+            "Actually temperature is 20C",  # CONTRADICTION!
+            "Weather is sunny",
+            "Weather is rainy"  # ANOTHER CONTRADICTION!
+        ],
+        context_size=2000

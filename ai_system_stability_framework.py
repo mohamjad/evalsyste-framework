@@ -691,3 +691,14 @@ class ContextWindowAnalyzer:
             try:
                 trend_stats = self.statistical_analyzer.analyze_trend(
                     coherence_values, 
+                    timestamps=context_sizes
+                )
+                
+                # Calculate confidence interval for efficiency
+                eff_values = [eff for _, eff in efficiencies]
+                if len(eff_values) > 1:
+                    mean_eff, lower_eff, upper_eff = self.statistical_analyzer.calculate_confidence_interval(eff_values)
+                    trend_stats["efficiency_ci"] = (mean_eff, lower_eff, upper_eff)
+            except Exception as e:
+                self.logger.logger.debug(f"Statistical analysis failed: {e}")
+        

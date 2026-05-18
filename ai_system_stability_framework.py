@@ -966,3 +966,14 @@ class AIStabilityFramework:
         coherence = self.coherence_tracker.calculate_coherence_score()
         clarity = self.signal_metrics.calculate_clarity_score(statement_objects)
         redundancy = self.signal_metrics.calculate_redundancy_ratio(statement_objects)
+        efficiency = self.signal_metrics.calculate_context_efficiency(coherence, context_size)
+        
+        # Check thresholds
+        coherence_passed = coherence >= self.thresholds["coherence_minimum"]
+        clarity_passed = clarity >= self.thresholds["clarity_minimum"]
+        redundancy_passed = redundancy <= self.thresholds["redundancy_maximum"]
+        
+        self.logger.log_threshold_check(
+            "coherence", coherence, self.thresholds["coherence_minimum"], coherence_passed
+        )
+        self.logger.log_threshold_check(

@@ -20,3 +20,14 @@ def test_random_sample_respects_bounds():
     assert 1 <= sample["depth"] <= 5
     assert float(sample["depth"]).is_integer()
 
+
+def test_optimizer_finds_reasonable_point_for_simple_objective():
+    """Optimization should improve on a simple smooth objective."""
+    optimizer = BayesianOptimizer(
+        space=[HyperparameterSpace("x", -2.0, 2.0)],
+        n_initial=3,
+        n_iterations=8,
+    )
+
+    def objective(point):
+        return 1.0 - (point["x"] - 0.5) ** 2

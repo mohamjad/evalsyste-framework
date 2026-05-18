@@ -20,3 +20,14 @@ def test_process_operation_detects_contradictions(tmp_path):
     result = framework.process_operation(
         operation_description="contradiction check",
         statements=[
+            "The system is stable",
+            "The system is unstable",
+            "Processing continues",
+        ],
+        context_size=200,
+    )
+
+    assert result["metrics"]["contradictions_count"] > 0
+    assert result["metrics"]["coherence"] < 1.0
+
+

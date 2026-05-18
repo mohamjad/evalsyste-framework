@@ -196,3 +196,14 @@ class SemanticAnalyzer:
         if len(texts) < 2:
             return 0.0
         
+        if self.use_embeddings and self.model:
+            return self._embedding_based_redundancy(texts)
+        else:
+            return self._lexical_redundancy(texts)
+    
+    def _lexical_redundancy(self, texts: List[str]) -> float:
+        """Calculate redundancy using word overlap (Jaccard similarity)."""
+        if len(texts) < 2:
+            return 0.0
+        
+        # Tokenize and normalize

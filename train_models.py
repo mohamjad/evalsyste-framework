@@ -31,3 +31,14 @@ except ImportError:
     NEURAL_AVAILABLE = False
 
 
+class ContradictionDataset(Dataset):
+    """Dataset for contradiction detection training."""
+    
+    def __init__(self, pairs: List[Tuple[str, str]], labels: List[int], encoder):
+        self.pairs = pairs
+        self.labels = labels
+        self.encoder = encoder
+    
+    def __len__(self):
+        return len(self.pairs)
+    

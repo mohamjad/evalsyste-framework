@@ -240,3 +240,14 @@ class RedundancyDetectionModel(nn.Module):
         Args:
             statement_embeddings: List of statement embeddings
         
+        Returns:
+            Redundancy score (0-1)
+        """
+        if len(statement_embeddings) < 2:
+            return torch.tensor(0.0)
+        
+        # Calculate pairwise similarities
+        similarities = []
+        for i in range(len(statement_embeddings)):
+            for j in range(i + 1, len(statement_embeddings)):
+                emb1 = statement_embeddings[i]

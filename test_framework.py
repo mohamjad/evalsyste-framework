@@ -20,3 +20,14 @@ def main():
     # Test basic operation
     print("\n2. Testing basic operation...")
     result = framework.process_operation(
+        operation_description="Test operation",
+        statements=[
+            "System initialized",
+            "Processing started",
+            "Operation completed"
+        ],
+        context_size=100
+    )
+    print(f"   Signal Quality: {result['signal_quality']}")
+    print(f"   Coherence: {result['metrics']['coherence']:.3f}")
+    print(f"   [OK] Basic operation works")

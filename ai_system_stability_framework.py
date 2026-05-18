@@ -559,3 +559,14 @@ class SignalMetricsCalculator:
             formula="redundancy = 1.0 - (unique_words / total_words)",
             calculation=f"1.0 - ({len(unique_words)} / {len(all_words)}) = {redundancy:.4f}",
             output=redundancy,
+            interpretation=f"Lexical redundancy: {redundancy*100:.1f}% of content is redundant"
+        )
+        
+        return redundancy
+    
+    def calculate_context_efficiency(self, current_coherence: float, 
+                                    current_context: int) -> Optional[float]:
+        """
+        Calculate context efficiency ratio.
+        
+        Formula: (current_signal / current_context) / (baseline_signal / baseline_context)

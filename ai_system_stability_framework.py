@@ -823,3 +823,14 @@ class SelfVerifier:
         coherence = tracker.calculate_coherence_score()
         
         # Should have 1 contradiction, 4 statements = 6 pairs
+        expected_coherence = 1.0 - (1.0 / 6.0)  # 0.833...
+        
+        assert abs(coherence - expected_coherence) < 0.01, \
+            f"Coherence calculation broken: expected ~{expected_coherence:.3f}, got {coherence:.3f}"
+        
+        # Clean up temp file
+        try:
+            os.unlink(temp_file.name)
+        except:
+            pass
+        

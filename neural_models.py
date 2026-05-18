@@ -130,3 +130,14 @@ class ContradictionDetectionModel(nn.Module):
         return contradiction_prob
     
     def predict(self, sent1_emb: torch.Tensor, sent2_emb: torch.Tensor, 
+                threshold: float = 0.5) -> Tuple[bool, float]:
+        """Predict contradiction with confidence."""
+        self.eval()
+        with torch.no_grad():
+            prob = self.forward(sent1_emb, sent2_emb)
+            is_contradiction = (prob.item() > threshold)
+            confidence = prob.item()
+        return is_contradiction, confidence
+
+
+class ClarityScoringModel(nn.Module):

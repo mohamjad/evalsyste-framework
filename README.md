@@ -20,3 +20,14 @@ This repo scores the parts that usually get hand-waved:
 It keeps the implementation small and inspectable. No giant platform. No fake
 research claims. Just structured eval objects, scorers, runners, fixtures, and
 tests.
+
+## Run
+
+```bash
+pip install -e .[dev]
+pytest
+evalsyste builtin
+```
+
+## Core Package
+

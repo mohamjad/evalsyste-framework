@@ -141,3 +141,14 @@ class MockAISystem:
 def example_integration():
     """Example of integrating monitoring with an AI system."""
     print("=" * 60)
+    print("Integration Example: Monitoring an AI System")
+    print("=" * 60)
+    
+    # Create base AI system
+    base_system = MockAISystem()
+    
+    # Wrap with monitoring
+    monitored_system = MonitoredAISystem(
+        base_system,
+        log_file="integration_example.log"
+    )

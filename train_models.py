@@ -108,3 +108,14 @@ def train_contradiction_model(data_path: str, epochs: int = 50):
     train_dataset, val_dataset = torch.utils.data.random_split(dataset, [train_size, val_size])
     
     train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True)
+    val_loader = DataLoader(val_dataset, batch_size=4, shuffle=False)
+    
+    # Initialize model
+    model = ContradictionDetectionModel(embedding_dim=384, use_pretrained=True)
+    trainer = ModelTrainer(model, learning_rate=1e-4)
+    
+    # Train
+    print("Training contradiction detection model...")
+    history = trainer.train(train_loader, val_loader, epochs=epochs)
+    
+    # Save

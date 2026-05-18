@@ -1,0 +1,11 @@
+# Core dependencies (required)
+# Python 3.8+ with standard library only
+
+# Optional: Advanced semantic analysis
+# Install with: pip install sentence-transformers
+sentence-transformers>=2.2.0
+
+# Optional: Neural network models and training
+# Install with: pip install torch
+torch>=2.0.0
+

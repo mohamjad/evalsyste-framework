@@ -328,3 +328,14 @@ class ModelTrainer:
             loss.backward()
             torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=1.0)
             self.optimizer.step()
+            
+            total_loss += loss.item()
+            num_batches += 1
+        
+        avg_loss = total_loss / num_batches if num_batches > 0 else 0.0
+        return avg_loss
+    
+    def validate(self, dataloader, criterion):
+        """Validate model."""
+        self.model.eval()
+        total_loss = 0.0

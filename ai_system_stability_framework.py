@@ -53,3 +53,14 @@ class Statement:
     operation_id: Optional[str] = None
 
 
+@dataclass
+class Contradiction:
+    """A detected logical conflict between statements."""
+    statement1: Statement
+    statement2: Statement
+    reason: str
+    detected_at: float
+
+
+@dataclass
+class ContextSnapshot:

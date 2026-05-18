@@ -713,3 +713,14 @@ class ContextWindowAnalyzer:
             trend = trend_stats["trend"].upper()
         elif last_eff > first_eff * 1.1:
             trend = "AMPLIFYING"
+        elif last_eff > first_eff * 0.9:
+            trend = "MAINTAINING"
+        else:
+            trend = "DEGRADING"
+        
+        # Generate recommendation
+        if trend == "AMPLIFYING" or trend == "INCREASING":
+            recommendation = "Continue scaling - system leverages context effectively"
+        elif trend == "MAINTAINING" or trend == "STABLE":
+            recommendation = "Scale is neutral - consider optimizing context usage"
+        elif trend == "DEGRADING" or trend == "DECREASING":

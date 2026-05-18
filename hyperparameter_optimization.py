@@ -229,3 +229,10 @@ class BayesianOptimizer:
         try:
             X_array = np.array([self._point_to_vector(x) for x in self.X])
             y_array = np.array(self.y)
+            self.gp.fit(X_array, y_array)
+            
+            x_vec = self._point_to_vector(point).reshape(1, -1)
+            _, sigma = self.gp.predict(x_vec, return_std=True)
+            return float(sigma[0])
+        except Exception:
+            return 1.0

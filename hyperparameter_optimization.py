@@ -218,3 +218,14 @@ class BayesianOptimizer:
         best_idx = np.argmax(self.y)
         best_point = self.X[best_idx]
         best_score = self.y[best_idx]
+        
+        return best_point, best_score
+    
+    def get_uncertainty(self, point: Dict[str, float]) -> float:
+        """Get uncertainty estimate for a point."""
+        if not self.gp or len(self.X) < 2:
+            return 1.0
+        
+        try:
+            X_array = np.array([self._point_to_vector(x) for x in self.X])
+            y_array = np.array(self.y)

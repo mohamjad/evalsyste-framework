@@ -108,3 +108,14 @@ Input: {inputs}
 Formula: {formula}
 Calculation: {calculation}
 Output: {output}
+Interpretation: {interpretation}
+"""
+        self.logger.info(msg)
+    
+    def log_contradiction(self, stmt1: Statement, stmt2: Statement, reason: str):
+        """Log a detected contradiction."""
+        msg = f"""
+CONTRADICTION DETECTED
+Statement 1: "{stmt1.content}" (at {stmt1.timestamp})
+Statement 2: "{stmt2.content}" (at {stmt2.timestamp})
+Reason: {reason}

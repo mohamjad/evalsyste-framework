@@ -207,3 +207,14 @@ class RedundancyDetectionModel(nn.Module):
     
     def __init__(self,
                  embedding_dim: int = 384,
+                 hidden_dim: int = 256,
+                 dropout: float = 0.1):
+        super().__init__()
+        
+        # Pairwise similarity network
+        self.pairwise_net = nn.Sequential(
+            nn.Linear(embedding_dim * 2 + 1, hidden_dim),  # +1 for cosine sim
+            nn.ReLU(),
+            nn.Dropout(dropout),
+            nn.Linear(hidden_dim, hidden_dim // 2),
+            nn.ReLU(),

@@ -196,3 +196,14 @@ class BayesianOptimizer:
         
         Returns:
             (best_hyperparameters, best_score)
+        """
+        # Initial random sampling
+        for _ in range(self.n_initial):
+            point = self._random_sample()
+            score = objective_function(point)
+            self.X.append(point)
+            self.y.append(score)
+        
+        # Bayesian optimization loop
+        for iteration in range(self.n_iterations):
+            # Select next point

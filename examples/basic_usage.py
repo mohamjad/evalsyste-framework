@@ -97,3 +97,14 @@ def example_2_scaling_validation():
                 f"Analyzed {context_size} tokens",
                 "Found relevant patterns",
                 "Generated insights",
+                "Quality maintained"
+            ],
+            context_size=context_size
+        )
+        
+        efficiency = result['metrics']['context_efficiency']
+        if efficiency:
+            print(f"   Context {context_size}: efficiency={efficiency:.3f}")
+        else:
+            print(f"   Context {context_size}: baseline established")
+    

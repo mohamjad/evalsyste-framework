@@ -42,3 +42,14 @@ except ImportError:
     torch = None
 
 
+@dataclass
+class Statement:
+    """A single claim or assertion made by the system."""
+    content: str
+    timestamp: float
+    context_size: int
+    confidence: float = 1.0
+    dependencies: List[str] = field(default_factory=list)
+    operation_id: Optional[str] = None
+
+

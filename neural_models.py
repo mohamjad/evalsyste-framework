@@ -152,3 +152,14 @@ class ClarityScoringModel(nn.Module):
                  input_dim: int = 384,
                  hidden_dims: List[int] = [256, 128],
                  dropout: float = 0.1):
+        super().__init__()
+        
+        layers = []
+        current_dim = input_dim
+        
+        for hidden_dim in hidden_dims:
+            layers.append(nn.Linear(current_dim, hidden_dim))
+            layers.append(nn.ReLU())
+            layers.append(nn.Dropout(dropout))
+            current_dim = hidden_dim
+        

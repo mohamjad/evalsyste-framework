@@ -636,3 +636,14 @@ class ContextWindowAnalyzer:
                 pass
     
     def capture_snapshot(self, context_size: int, coherence: float, 
+                        operations_count: int, statements_count: int,
+                        error_rate: float = 0.0):
+        """Capture a snapshot of system state."""
+        snapshot = ContextSnapshot(
+            context_size=context_size,
+            coherence=coherence,
+            operations_count=operations_count,
+            error_rate=error_rate,
+            statements_count=statements_count
+        )
+        self.snapshots.append(snapshot)

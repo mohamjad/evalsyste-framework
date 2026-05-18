@@ -515,3 +515,14 @@ class SignalMetricsCalculator:
         
         # Use semantic redundancy if available
         if self.semantic_analyzer:
+            try:
+                texts = [stmt.content for stmt in statements]
+                redundancy = self.semantic_analyzer.calculate_semantic_redundancy(texts)
+                
+                self.logger.log_calculation(
+                    component="SignalMetricsCalculator",
+                    operation="Calculate Semantic Redundancy Ratio",
+                    inputs={"statements_count": len(statements), "method": "semantic_embeddings"},
+                    formula="average pairwise semantic similarity",
+                    calculation=f"Semantic redundancy = {redundancy:.4f}",
+                    output=redundancy,

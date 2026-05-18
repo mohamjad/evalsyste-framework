@@ -1054,3 +1054,14 @@ Current Metrics:
 Scaling Behavior:
   Trend: {scaling_analysis.get('trend', 'UNKNOWN')}
   Recommendation: {scaling_analysis.get('recommendation', 'N/A')}
+
+Recent Operations:
+"""
+        for op in self.operations[-5:]:  # Last 5 operations
+            report += f"  - {op['operation_description']}: {op['signal_quality']}\n"
+        
+        if self.coherence_tracker.contradictions:
+            report += "\nContradictions:\n"
+            for contr in self.coherence_tracker.contradictions[-5:]:  # Last 5
+                report += f"  - {contr.statement1.content} vs {contr.statement2.content}\n"
+        

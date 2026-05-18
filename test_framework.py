@@ -53,3 +53,14 @@ def main():
     print("\n4. Testing scaling analysis...")
     for size in [500, 1000]:
         framework.process_operation(
+            operation_description=f"Scale test {size}",
+            statements=[f"Processing at {size} tokens"],
+            context_size=size
+        )
+    
+    analysis = framework.context_analyzer.analyze_scaling_behavior()
+    print(f"   Trend: {analysis['trend']}")
+    print(f"   [OK] Scaling analysis works")
+    
+    # Generate report
+    print("\n5. Generating report...")

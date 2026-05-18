@@ -86,3 +86,14 @@ class SemanticAnalyzer:
             semantic_score, semantic_reason = self._semantic_contradiction(text1, text2)
         
         # Combine scores with weights
+        if self.use_embeddings:
+            # Weighted combination: 60% semantic, 40% lexical
+            combined_score = 0.6 * semantic_score + 0.4 * lexical_score
+        else:
+            combined_score = lexical_score
+        
+        is_contradiction = combined_score > 0.6  # Threshold based on empirical testing
+        
+        reason = f"{lexical_reason}"
+        if semantic_reason:
+            reason += f" | {semantic_reason}"

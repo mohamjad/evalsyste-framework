@@ -955,3 +955,14 @@ class AIStabilityFramework:
         # Add statements to tracker
         statement_objects = []
         for stmt_content in statements:
+            stmt = self.coherence_tracker.add_statement(
+                content=stmt_content,
+                context_size=context_size,
+                operation_id=operation_id
+            )
+            statement_objects.append(stmt)
+        
+        # Calculate metrics
+        coherence = self.coherence_tracker.calculate_coherence_score()
+        clarity = self.signal_metrics.calculate_clarity_score(statement_objects)
+        redundancy = self.signal_metrics.calculate_redundancy_ratio(statement_objects)

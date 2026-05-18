@@ -64,3 +64,14 @@ class ContradictionDetectionModel(nn.Module):
         current_dim = interaction_input_dim
         for _ in range(num_layers):
             layers.append(nn.Linear(current_dim, hidden_dim))
+            layers.append(nn.ReLU())
+            layers.append(nn.Dropout(dropout))
+            current_dim = hidden_dim
+        
+        self.interaction = nn.Sequential(*layers)
+        
+        # Classification head
+        self.classifier = nn.Sequential(
+            nn.Linear(hidden_dim, hidden_dim // 2),
+            nn.ReLU(),
+            nn.Dropout(dropout),

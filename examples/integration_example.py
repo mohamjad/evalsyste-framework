@@ -31,3 +31,14 @@ class MonitoredAISystem:
             log_level="INFO"
         )
     
+    def process(self, input_data: Any) -> Dict[str, Any]:
+        """
+        Process input and monitor stability.
+        
+        Returns response with added stability_metrics field.
+        """
+        # Get AI response
+        response = self.base.process(input_data)
+        
+        # Extract statements from response
+        statements = self._extract_statements(response)

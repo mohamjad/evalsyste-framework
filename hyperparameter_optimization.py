@@ -174,3 +174,14 @@ class BayesianOptimizer:
         X_candidates = np.array([self._point_to_vector(p) for p in candidates])
         
         # Calculate acquisition values
+        if self.acquisition_function == 'ei':
+            acq_values = self._expected_improvement(X_candidates)
+        elif self.acquisition_function == 'ucb':
+            acq_values = self._upper_confidence_bound(X_candidates)
+        else:
+            acq_values = self._expected_improvement(X_candidates)
+        
+        # Select best
+        best_idx = np.argmax(acq_values)
+        best_point = candidates[best_idx]
+        

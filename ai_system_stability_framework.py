@@ -152,3 +152,14 @@ class CoherenceTracker:
         # Initialize semantic analyzer if available
         self.semantic_analyzer = None
         if use_semantic and SEMANTIC_AVAILABLE:
+            try:
+                self.semantic_analyzer = SemanticAnalyzer(use_embeddings=True)
+                self.logger.logger.info("Semantic analyzer initialized with embeddings")
+            except Exception as e:
+                self.logger.logger.warning(f"Could not initialize semantic analyzer: {e}")
+                self.semantic_analyzer = None
+        
+        # Initialize neural models if available
+        self.neural_contradiction_model = None
+        if use_semantic and NEURAL_AVAILABLE:
+            try:

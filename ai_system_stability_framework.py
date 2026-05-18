@@ -537,3 +537,14 @@ class SignalMetricsCalculator:
         all_words = []
         unique_words = set()
         
+        for stmt in statements:
+            words = stmt.content.lower().split()
+            all_words.extend(words)
+            unique_words.update(words)
+        
+        if not all_words:
+            return 0.0
+        
+        unique_ratio = len(unique_words) / len(all_words)
+        redundancy = 1.0 - unique_ratio
+        

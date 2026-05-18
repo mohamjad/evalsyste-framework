@@ -20,3 +20,14 @@ def example_1_detecting_degradation():
     framework = AIStabilityFramework(log_file="example1.log", log_level="INFO")
     
     # Small context - should be coherent
+    print("\n1. Small context (100 tokens)...")
+    result1 = framework.process_operation(
+        operation_description="Initial query",
+        statements=[
+            "User wants weather information",
+            "Location is London",
+            "Retrieved forecast data"
+        ],
+        context_size=100
+    )
+    print(f"   Signal Quality: {result1['signal_quality']}")

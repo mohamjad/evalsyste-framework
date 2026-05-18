@@ -119,3 +119,14 @@ class ContradictionDetectionModel(nn.Module):
         cos_sim = F.cosine_similarity(enc1, enc2, dim=1, keepdim=True)
         
         # Concatenate features
+        combined = torch.cat([enc1, enc2, cos_sim], dim=1)
+        
+        # Interaction layer
+        interaction_out = self.interaction(combined)
+        
+        # Classification
+        contradiction_prob = self.classifier(interaction_out)
+        
+        return contradiction_prob
+    
+    def predict(self, sent1_emb: torch.Tensor, sent2_emb: torch.Tensor, 

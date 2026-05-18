@@ -141,3 +141,14 @@ class StatisticalAnalyzer:
         if len(values) < 2:
             return {
                 "trend": "insufficient_data",
+                "slope": 0.0,
+                "correlation": 0.0,
+                "p_value": 1.0,
+                "is_significant": False
+            }
+        
+        n = len(values)
+        
+        # Use indices as time if timestamps not provided
+        if timestamps is None:
+            x = list(range(n))

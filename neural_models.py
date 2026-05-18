@@ -361,3 +361,14 @@ class ModelTrainer:
             
             self.scheduler.step(val_loss)
             
+            self.training_history.append({
+                'epoch': epoch,
+                'train_loss': train_loss,
+                'val_loss': val_loss
+            })
+            
+            # Early stopping
+            if val_loss < self.best_loss:
+                self.best_loss = val_loss
+                patience_counter = 0
+            else:

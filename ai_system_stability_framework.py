@@ -933,3 +933,14 @@ class AIStabilityFramework:
     
     def process_operation(self, operation_description: str,
                          statements: List[str],
+                         context_size: int,
+                         operation_id: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Process a single AI operation and return stability metrics.
+        
+        Args:
+            operation_description: What the operation was doing
+            statements: List of statements/claims made during operation
+            context_size: Size of context window (tokens/statements)
+            operation_id: Optional identifier for this operation
+        

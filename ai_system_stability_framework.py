@@ -526,3 +526,14 @@ class SignalMetricsCalculator:
                     formula="average pairwise semantic similarity",
                     calculation=f"Semantic redundancy = {redundancy:.4f}",
                     output=redundancy,
+                    interpretation=f"Semantic redundancy: {redundancy*100:.1f}% (based on embeddings)"
+                )
+                
+                return redundancy
+            except Exception as e:
+                self.logger.logger.debug(f"Semantic redundancy failed: {e}, using lexical")
+        
+        # Fallback: lexical redundancy (Jaccard similarity)
+        all_words = []
+        unique_words = set()
+        

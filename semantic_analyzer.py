@@ -251,3 +251,14 @@ class SemanticAnalyzer:
                         similarities.append(similarity)
             
             if not similarities:
+                return 0.0
+            
+            # High similarity = high redundancy
+            avg_similarity = sum(similarities) / len(similarities)
+            return avg_similarity
+            
+        except Exception as e:
+            # Fallback to lexical
+            return self._lexical_redundancy(texts)
+    
+    def calculate_information_content(self, text: str) -> float:

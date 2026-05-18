@@ -174,3 +174,14 @@ def example_4_continuous_monitoring():
         # Simulate AI system doing something
         statements = [
             f"Processing operation {operation_num}",
+            "Retrieved relevant data",
+            "Generated response"
+        ]
+        
+        # Introduce contradictions after operation 5
+        if operation_num > 5:
+            statements.append("System is stable")
+            statements.append("System is unstable")  # Contradiction
+        
+        context_size = 100 + (operation_num * 100)
+        

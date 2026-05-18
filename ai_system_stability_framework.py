@@ -394,3 +394,14 @@ class SignalMetricsCalculator:
         References:
         - Shannon (1948): Information Theory
         - Resnik (1995): Semantic specificity measures
+        """
+        if not statements:
+            return 1.0
+        
+        scores = []
+        for stmt in statements:
+            content = stmt.content
+            
+            # Try neural model first if available
+            if self.neural_clarity_model and NEURAL_AVAILABLE and self.semantic_analyzer and self.semantic_analyzer.model:
+                try:

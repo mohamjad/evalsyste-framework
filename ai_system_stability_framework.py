@@ -75,3 +75,14 @@ class ContextSnapshot:
 
 class AuditLogger:
     """
+    Structured logging for framework calculations and warnings.
+    """
+    
+    def __init__(self, log_file: str = "stability.log", log_level: str = "INFO"):
+        self.log_file = log_file
+        self.logger = logging.getLogger("ai_stability")
+        self.logger.setLevel(getattr(logging, log_level))
+        
+        # File handler
+        handler = logging.FileHandler(log_file)
+        formatter = logging.Formatter(

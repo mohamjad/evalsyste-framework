@@ -757,3 +757,14 @@ class SelfVerifier:
 
     Before monitoring any AI system, we test:
     1. Metric calculations with known inputs
+    2. Contradiction detection logic
+    3. Threshold checking
+    4. Logging functionality
+    """
+    
+    def __init__(self, logger: AuditLogger):
+        self.logger = logger
+        self.tests_passed = 0
+        self.tests_failed = 0
+        self.test_results: List[Dict[str, Any]] = []
+    

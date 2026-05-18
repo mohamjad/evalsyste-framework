@@ -20,3 +20,14 @@ class MonitoredAISystem:
     Usage:
         base_system = YourAISystem()
         monitored = MonitoredAISystem(base_system)
+        response = monitored.process(input_data)
+        # response.stability_metrics contains monitoring data
+    """
+    
+    def __init__(self, base_ai_system, log_file: str = None):
+        self.base = base_ai_system
+        self.monitor = AIStabilityFramework(
+            log_file=log_file or f"ai_stability_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log",
+            log_level="INFO"
+        )
+    

@@ -185,3 +185,14 @@ def example_4_continuous_monitoring():
         
         context_size = 100 + (operation_num * 100)
         
+        result = framework.process_operation(
+            operation_description=f"Operation {operation_num}",
+            statements=statements,
+            context_size=context_size
+        )
+        
+        # Check for issues
+        if result['signal_quality'] in ['DEGRADING', 'NOISY']:
+            if not degradation_detected:
+                print(f"\nWARNING: Quality issue detected at operation {operation_num}")
+                degradation_detected = True

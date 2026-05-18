@@ -31,3 +31,6 @@ This repository is intentionally scoped as a lightweight monitoring and experime
 
 ## Not Recommended As
 
+- a sole decision-maker for deployment readiness
+- a substitute for human review
+- evidence of research-grade semantic evaluation by itself

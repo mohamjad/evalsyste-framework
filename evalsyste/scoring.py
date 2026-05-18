@@ -20,3 +20,14 @@ def evidence_support_score(answer: str, evidence: tuple[EvidenceItem, ...]) -> f
     if not evidence:
         return 0.0
     support = 0.0
+    total = 0.0
+    answer_lower = answer.lower()
+    for item in evidence:
+        weight = max(item.weight, 0.0)
+        total += weight
+        claim_present = item.claim.lower() in answer_lower
+        if item.supports and claim_present:
+            support += weight
+        if not item.supports and not claim_present:
+            support += weight
+    return support / total if total else 0.0

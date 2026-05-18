@@ -20,3 +20,14 @@ def test_significance_requires_enough_data():
 
     significant, p_value, interpretation = analyzer.test_significance([0.8], [0.6])
 
+    assert significant is False
+    assert p_value == 1.0
+    assert "insufficient data" in interpretation
+
+
+def test_trend_analysis_identifies_increase():
+    """A clear upward series should be recognized as increasing."""
+    analyzer = StatisticalAnalyzer()
+
+    result = analyzer.analyze_trend([0.2, 0.4, 0.6, 0.8, 1.0])
+

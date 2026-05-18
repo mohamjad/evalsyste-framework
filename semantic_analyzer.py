@@ -229,3 +229,14 @@ class SemanticAnalyzer:
         avg_redundancy = sum(similarities) / len(similarities)
         return avg_redundancy
     
+    def _embedding_based_redundancy(self, texts: List[str]) -> float:
+        """Calculate redundancy using semantic embeddings."""
+        if not self.model or len(texts) < 2:
+            return 0.0
+        
+        try:
+            embeddings = self.model.encode(texts)
+            
+            # Calculate pairwise cosine similarities
+            similarities = []
+            for i in range(len(embeddings)):

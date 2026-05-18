@@ -31,3 +31,14 @@ def run_builtin(args: argparse.Namespace) -> int:
                 "score": result.score,
                 "passed": result.passed,
                 "metrics": result.metrics,
+                "notes": result.notes,
+            }
+            for result in report.results
+        ],
+    }
+    print(json.dumps(payload, indent=2))
+    return 0
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(prog="evalsyste")

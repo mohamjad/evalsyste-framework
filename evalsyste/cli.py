@@ -42,3 +42,14 @@ def run_builtin(args: argparse.Namespace) -> int:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="evalsyste")
+    subparsers = parser.add_subparsers(dest="command", required=True)
+    builtin = subparsers.add_parser("builtin", help="run built-in ambiguity eval cases")
+    builtin.add_argument("--threshold", type=float, default=0.65)
+    builtin.set_defaults(func=run_builtin)
+    return parser
+
+
+def main(argv: list[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    return int(args.func(args))
+

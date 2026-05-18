@@ -97,3 +97,14 @@ class MonitoredAISystem:
     
     def _get_context_size(self) -> int:
         """
+        Get current context size from the AI system.
+        
+        Adjust this based on how your system tracks context.
+        """
+        if hasattr(self.base, 'context_window'):
+            return len(self.base.context_window)
+        elif hasattr(self.base, 'get_context_size'):
+            return self.base.get_context_size()
+        else:
+            # Default estimate
+            return 1000

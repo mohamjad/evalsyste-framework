@@ -449,3 +449,14 @@ class SignalMetricsCalculator:
             # Weighted combination (information content weighted highest)
             clarity = (
                 info_content * 0.35 +
+                word_score * 0.30 +
+                specificity_score * 0.20 +
+                concrete_score * 0.15
+            )
+            scores.append(clarity)
+        
+        avg_clarity = sum(scores) / len(scores)
+        
+        # Calculate confidence interval if statistical analyzer available
+        ci_info = ""
+        if self.statistical_analyzer and len(scores) > 1:

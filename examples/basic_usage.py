@@ -141,3 +141,14 @@ def example_3_custom_thresholds():
     # Test with borderline case
     result = framework.process_operation(
         operation_description="Test with custom thresholds",
+        statements=[
+            "System is processing",
+            "Quality is acceptable",
+            "Output generated"
+        ],
+        context_size=500
+    )
+    
+    print(f"\nResults:")
+    print(f"  Coherence: {result['metrics']['coherence']:.3f} "
+          f"({'PASS' if result['thresholds_passed']['coherence'] else 'FAIL'})")

@@ -86,3 +86,14 @@ def train_contradiction_model(data_path: str, epochs: int = 50):
     # labels = [0 or 1, ...]
     # For now, create dummy data
     print("Note: Replace with your actual data loading")
+    pairs = [
+        ("system is stable", "system is unstable"),
+        ("temperature increased", "temperature decreased"),
+        ("operation succeeded", "operation failed"),
+        ("system is stable", "system is working"),
+        ("temperature is high", "temperature is low"),
+    ]
+    labels = [1, 1, 1, 0, 1]
+    
+    # Initialize encoder
+    encoder = SemanticAnalyzer(use_embeddings=True)

@@ -31,3 +31,14 @@ class StatisticalAnalyzer:
         """
         self.confidence_level = confidence_level
         self.alpha = 1.0 - confidence_level
+    
+    def calculate_confidence_interval(self, values: List[float]) -> Tuple[float, float, float]:
+        """
+        Calculate confidence interval for a sample.
+        
+        Uses t-distribution for small samples, normal for large.
+        
+        Returns:
+            (mean, lower_bound, upper_bound)
+        """
+        if not values:

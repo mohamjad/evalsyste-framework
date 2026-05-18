@@ -768,3 +768,14 @@ class SelfVerifier:
         self.tests_failed = 0
         self.test_results: List[Dict[str, Any]] = []
     
+    def run_all_tests(self) -> bool:
+        """Run complete test suite."""
+        self.logger.logger.info("=== FRAMEWORK SELF-VERIFICATION ===")
+        
+        tests = [
+            self.test_coherence_calculation,
+            self.test_contradiction_detection,
+            self.test_threshold_checking,
+        ]
+        
+        for test in tests:

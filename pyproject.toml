@@ -31,3 +31,14 @@ optimization = [
   "scikit-learn>=1.0.0"
 ]
 
+[project.scripts]
+evalsyste = "evalsyste.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/mohamjad/evalsyste-framework"
+Repository = "https://github.com/mohamjad/evalsyste-framework"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-q"

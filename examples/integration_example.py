@@ -130,3 +130,14 @@ class MockAISystem:
         return {
             'message': f"Processed: {input_data}",
             'reasoning': f"This is operation #{self.operation_count}",
+            'claims': [
+                f"Input received: {input_data}",
+                f"Processing completed successfully",
+                f"Operation {self.operation_count} finished"
+            ]
+        }
+
+
+def example_integration():
+    """Example of integrating monitoring with an AI system."""
+    print("=" * 60)

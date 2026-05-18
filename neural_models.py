@@ -262,3 +262,14 @@ class RedundancyDetectionModel(nn.Module):
         if not similarities:
             return torch.tensor(0.0)
         
+        # Average pairwise similarity = redundancy
+        redundancy = torch.stack(similarities).mean()
+        return redundancy
+    
+    def predict(self, statement_embeddings: List[torch.Tensor]) -> float:
+        """Predict redundancy score."""
+        self.eval()
+        with torch.no_grad():
+            score = self.forward(statement_embeddings)
+            return score.item()
+

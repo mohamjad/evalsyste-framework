@@ -339,3 +339,14 @@ class SignalMetricsCalculator:
     
     def __init__(self, logger: AuditLogger, coherence_tracker: CoherenceTracker):
         self.logger = logger
+        self.coherence_tracker = coherence_tracker
+        self.baseline_signal: Optional[float] = None
+        self.baseline_context: Optional[int] = None
+        
+        # Initialize statistical analyzer
+        self.statistical_analyzer = None
+        if STATISTICAL_AVAILABLE:
+            try:
+                self.statistical_analyzer = StatisticalAnalyzer(confidence_level=0.95)
+                self.logger.logger.info("Statistical analyzer initialized")
+            except Exception as e:

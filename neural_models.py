@@ -86,3 +86,14 @@ class ContradictionDetectionModel(nn.Module):
         """Xavier initialization for learned layers."""
         for module in self.modules():
             if isinstance(module, nn.Linear):
+                nn.init.xavier_uniform_(module.weight)
+                if module.bias is not None:
+                    nn.init.zeros_(module.bias)
+    
+    def encode_sentence(self, sentence_embedding: torch.Tensor) -> torch.Tensor:
+        """Encode a sentence to fixed-size representation."""
+        if self.use_pretrained:
+            # Assume sentence_embedding is already from pre-trained model
+            return sentence_embedding
+        else:
+            return self.encoder(sentence_embedding)

@@ -53,3 +53,14 @@ class ContradictionDataset(Dataset):
         
         return emb1, emb2, label_tensor
 
+
+class ClarityDataset(Dataset):
+    """Dataset for clarity scoring training."""
+    
+    def __init__(self, statements: List[str], scores: List[float], encoder):
+        self.statements = statements
+        self.scores = scores
+        self.encoder = encoder
+    
+    def __len__(self):
+        return len(self.statements)

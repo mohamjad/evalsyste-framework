@@ -64,3 +64,14 @@ class SemanticAnalyzer:
         self.negation_words = ["not", "no", "never", "none", "neither", "nobody", "nothing"]
     
     def detect_contradiction(self, text1: str, text2: str) -> Tuple[bool, float, str]:
+        """
+        Detect if two texts contradict each other.
+        
+        Returns:
+            (is_contradiction, confidence, reason)
+            - is_contradiction: bool
+            - confidence: float 0-1
+            - reason: explanation string
+        """
+        text1_lower = text1.lower()
+        text2_lower = text2.lower()

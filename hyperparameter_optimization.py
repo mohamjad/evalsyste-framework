@@ -53,3 +53,14 @@ class BayesianOptimizer:
         self.n_iterations = n_iterations
         
         # Storage
+        self.X = []  # Evaluated points
+        self.y = []  # Objective values
+        
+        # GP model
+        self.gp = None
+        if SKLEARN_AVAILABLE:
+            kernel = C(1.0, (1e-3, 1e3)) * RBF(1.0, (1e-2, 1e2))
+            self.gp = GaussianProcessRegressor(
+                kernel=kernel,
+                n_restarts_optimizer=10,
+                alpha=1e-6

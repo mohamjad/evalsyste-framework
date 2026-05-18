@@ -163,3 +163,14 @@ class ClarityScoringModel(nn.Module):
             layers.append(nn.Dropout(dropout))
             current_dim = hidden_dim
         
+        # Output: clarity score (0-1)
+        layers.append(nn.Linear(current_dim, 1))
+        layers.append(nn.Sigmoid())
+        
+        self.network = nn.Sequential(*layers)
+        self._initialize_weights()
+    
+    def _initialize_weights(self):
+        """Xavier initialization."""
+        for module in self.modules():
+            if isinstance(module, nn.Linear):

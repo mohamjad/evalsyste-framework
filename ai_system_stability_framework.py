@@ -262,3 +262,14 @@ class CoherenceTracker:
                 return True, f"lexical antonym: '{opp1}' vs '{opp2}'"
             if opp2 in content1 and opp1 in content2:
                 return True, f"lexical antonym: '{opp2}' vs '{opp1}'"
+        
+        # Explicit negation
+        if "not " + content1.replace("is ", "").replace("are ", "") in content2:
+            return True, "explicit negation detected"
+        if "not " + content2.replace("is ", "").replace("are ", "") in content1:
+            return True, "explicit negation detected"
+        
+        return False, ""
+    
+    def calculate_coherence_score(self) -> float:
+        """

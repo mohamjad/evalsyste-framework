@@ -724,3 +724,14 @@ class ContextWindowAnalyzer:
         elif trend == "MAINTAINING" or trend == "STABLE":
             recommendation = "Scale is neutral - consider optimizing context usage"
         elif trend == "DEGRADING" or trend == "DECREASING":
+            recommendation = "STOP scaling - investigate degradation causes"
+        else:
+            recommendation = "Insufficient data for recommendation"
+        
+        # Add statistical information
+        result = {
+            "trend": trend,
+            "recommendation": recommendation,
+            "efficiencies": efficiencies,
+            "snapshots_count": len(self.snapshots),
+            "statistical_significance": trend_stats.get("is_significant", False),

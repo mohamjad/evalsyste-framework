@@ -174,3 +174,14 @@ class StatisticalAnalyzer:
         std_x = statistics.stdev(x) if len(x) > 1 else 1.0
         std_y = statistics.stdev(values) if n > 1 else 1.0
         
+        if std_x == 0 or std_y == 0:
+            correlation = 0.0
+        else:
+            correlation = (numerator / n) / (std_x * std_y)
+        
+        # Test significance of correlation
+        if n > 2:
+            t_stat = correlation * math.sqrt((n - 2) / (1 - correlation**2)) if abs(correlation) < 0.999 else 10.0
+            # Approximate p-value
+            if abs(t_stat) > 3.0:
+                p_value = 0.001

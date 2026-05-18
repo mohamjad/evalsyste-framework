@@ -482,3 +482,14 @@ class SignalMetricsCalculator:
         Uses semantic similarity (embeddings) if available, falls back to lexical.
         
         Formula: average pairwise semantic similarity
+        
+        References:
+        - Jaccard (1912): Set similarity
+        - Reimers & Gurevych (2019): Semantic embeddings
+        """
+        if not statements:
+            return 0.0
+        
+        # Try neural model first if available
+        if self.neural_redundancy_model and NEURAL_AVAILABLE and self.semantic_analyzer and self.semantic_analyzer.model:
+            try:

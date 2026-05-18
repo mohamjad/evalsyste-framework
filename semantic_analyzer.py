@@ -42,3 +42,14 @@ class SemanticAnalyzer:
         self.model = None
         
         if self.use_embeddings:
+            try:
+                # Use lightweight model for production
+                self.model = SentenceTransformer('all-MiniLM-L6-v2')
+            except Exception as e:
+                print(f"Warning: Could not load sentence transformer: {e}")
+                self.use_embeddings = False
+        
+        # Hand-authored antonym patterns used as heuristic fallbacks.
+        self.antonym_patterns = [
+            ("increase", "decrease"), ("increase", "reduce"), ("increase", "decline"),
+            ("stable", "unstable"), ("stable", "volatile"), ("stable", "erratic"),

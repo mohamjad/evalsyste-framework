@@ -53,3 +53,14 @@ class ContradictionDetectionModel(nn.Module):
             # Learn embeddings from scratch
             self.encoder = nn.Sequential(
                 nn.Linear(embedding_dim, hidden_dim),
+                nn.ReLU(),
+                nn.Dropout(dropout)
+            )
+            self.encoder_dim = embedding_dim
+        
+        # Interaction layer: combine two sentence embeddings
+        interaction_input_dim = self.encoder_dim * 2 + 1  # +1 for cosine similarity
+        layers = []
+        current_dim = interaction_input_dim
+        for _ in range(num_layers):
+            layers.append(nn.Linear(current_dim, hidden_dim))

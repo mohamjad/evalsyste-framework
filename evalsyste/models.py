@@ -86,3 +86,14 @@ class EvalReport:
 
     results: tuple[EvalResult, ...]
 
+    @property
+    def score(self) -> float:
+        if not self.results:
+            return 0.0
+        return sum(result.score for result in self.results) / len(self.results)
+
+    @property
+    def pass_rate(self) -> float:
+        if not self.results:
+            return 0.0
+        return sum(1 for result in self.results if result.passed) / len(self.results)

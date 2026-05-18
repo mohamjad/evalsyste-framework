@@ -229,3 +229,14 @@ class RedundancyDetectionModel(nn.Module):
         """Xavier initialization."""
         for module in self.modules():
             if isinstance(module, nn.Linear):
+                nn.init.xavier_uniform_(module.weight)
+                if module.bias is not None:
+                    nn.init.zeros_(module.bias)
+    
+    def forward(self, statement_embeddings: List[torch.Tensor]) -> torch.Tensor:
+        """
+        Forward pass for redundancy calculation.
+        
+        Args:
+            statement_embeddings: List of statement embeddings
+        

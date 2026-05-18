@@ -31,3 +31,14 @@ evalsyste builtin
 
 ## Core Package
 
+```python
+from evalsyste import EvalRunner
+from evalsyste.cases import load_builtin_cases
+
+
+def agent(prompt, metadata):
+    return prompt + " unresolved claims stay unverified"
+
+
+report = EvalRunner().run_suite(agent, load_builtin_cases())
+print(report.score)

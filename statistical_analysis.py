@@ -53,3 +53,14 @@ class StatisticalAnalyzer:
         # Sample standard deviation
         if n > 1:
             std_dev = statistics.stdev(values)
+        else:
+            std_dev = 0.0
+        
+        # Standard error
+        std_error = std_dev / math.sqrt(n)
+        
+        # Critical value (approximate t-distribution)
+        # For 95% CI: ~1.96 for large n, higher for small n
+        if n >= 30:
+            t_critical = 1.96  # Normal approximation
+        elif n >= 10:

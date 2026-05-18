@@ -944,3 +944,14 @@ class AIStabilityFramework:
             context_size: Size of context window (tokens/statements)
             operation_id: Optional identifier for this operation
         
+        Returns:
+            Dictionary with metrics and analysis
+        """
+        self.operation_count += 1
+        self.logger.logger.info(
+            f"Processing operation #{self.operation_count}: {operation_description}"
+        )
+        
+        # Add statements to tracker
+        statement_objects = []
+        for stmt_content in statements:

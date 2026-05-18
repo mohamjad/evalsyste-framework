@@ -350,3 +350,14 @@ class ModelTrainer:
                 num_batches += 1
         
         avg_loss = total_loss / num_batches if num_batches > 0 else 0.0
+        return avg_loss
+    
+    def train(self, train_loader, val_loader, epochs: int = 50, 
+              early_stopping_patience: int = 10):
+        """Full training loop with early stopping."""
+        for epoch in range(epochs):
+            train_loss = self.train_epoch(train_loader, nn.BCELoss())
+            val_loss = self.validate(val_loader, nn.BCELoss())
+            
+            self.scheduler.step(val_loss)
+            

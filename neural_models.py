@@ -218,3 +218,14 @@ class RedundancyDetectionModel(nn.Module):
             nn.Dropout(dropout),
             nn.Linear(hidden_dim, hidden_dim // 2),
             nn.ReLU(),
+            nn.Dropout(dropout),
+            nn.Linear(hidden_dim // 2, 1),
+            nn.Sigmoid()
+        )
+        
+        self._initialize_weights()
+    
+    def _initialize_weights(self):
+        """Xavier initialization."""
+        for module in self.modules():
+            if isinstance(module, nn.Linear):

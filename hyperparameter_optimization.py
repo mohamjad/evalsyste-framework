@@ -75,3 +75,14 @@ class BayesianOptimizer:
                 max_log = math.log(param.max_val)
                 val = math.exp(random.uniform(min_log, max_log))
             else:
+                val = random.uniform(param.min_val, param.max_val)
+            
+            if param.param_type == 'discrete':
+                val = round(val)
+            
+            point[param.name] = val
+        return point
+    
+    def _point_to_vector(self, point: Dict[str, float]) -> np.ndarray:
+        """Convert point dict to vector for GP."""
+        return np.array([point[p.name] for p in self.space])

@@ -284,3 +284,14 @@ class ModelTrainer:
     - Optimizers (Adam with learning rate scheduling)
     - Early stopping
     - Model checkpointing
+    """
+    
+    def __init__(self, 
+                 model: nn.Module,
+                 learning_rate: float = 1e-4,
+                 weight_decay: float = 1e-5,
+                 device: Optional[torch.device] = None):
+        self.model = model
+        self.device = device or torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        self.model.to(self.device)
+        

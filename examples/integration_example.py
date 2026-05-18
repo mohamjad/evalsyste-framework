@@ -163,3 +163,14 @@ def example_integration():
     
     for inp in inputs:
         response = monitored_system.process(inp)
+        print(f"\nInput: {inp}")
+        print(f"Response: {response['message']}")
+        print(f"Signal Quality: {response['signal_quality']}")
+        print(f"Coherence: {response['stability_metrics']['coherence']:.3f}")
+    
+    # Get final report
+    print("\n" + monitored_system.get_stability_report())
+
+
+if __name__ == "__main__":
+    example_integration()

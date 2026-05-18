@@ -75,3 +75,14 @@ def example_1_detecting_degradation():
 def example_2_scaling_validation():
     """Example: Validating that adding context actually helps."""
     print("\n" + "=" * 60)
+    print("Example 2: Validating Scale Benefits")
+    print("=" * 60)
+    
+    framework = AIStabilityFramework(log_file="example2.log", log_level="INFO")
+    
+    # Baseline
+    print("\nSetting baseline...")
+    framework.process_operation(
+        operation_description="Baseline",
+        statements=["Processing started"],
+        context_size=100

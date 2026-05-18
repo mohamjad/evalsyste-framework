@@ -284,3 +284,11 @@ class SemanticAnalyzer:
         entropy = 0.0
         for count in word_counts.values():
             probability = count / total_words
+            if probability > 0:
+                entropy -= probability * math.log2(probability)
+        
+        # Normalize by max possible entropy (log2 of unique words)
+        max_entropy = math.log2(len(word_counts)) if len(word_counts) > 1 else 1.0
+        normalized_entropy = entropy / max_entropy if max_entropy > 0 else 0.0
+        
+        return normalized_entropy

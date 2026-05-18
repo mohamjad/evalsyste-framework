@@ -438,3 +438,14 @@ class SignalMetricsCalculator:
             has_caps = any(char.isupper() and char.isalpha() for char in content)
             specificity_score = 0.0
             if has_numbers:
+                specificity_score += 0.25
+            if has_caps:
+                specificity_score += 0.15
+            
+            # Abstract vs concrete language
+            abstract_words = ["thing", "stuff", "something", "maybe", "perhaps", "possibly", "probably"]
+            concrete_score = 1.0 if not any(word in content.lower() for word in abstract_words) else 0.5
+            
+            # Weighted combination (information content weighted highest)
+            clarity = (
+                info_content * 0.35 +

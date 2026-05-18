@@ -273,3 +273,14 @@ class RedundancyDetectionModel(nn.Module):
             score = self.forward(statement_embeddings)
             return score.item()
 
+
+class ModelTrainer:
+    """
+    Training utilities for neural models.
+    
+    Implements:
+    - Training loops with proper batching
+    - Loss functions (BCE for classification, MSE for regression)
+    - Optimizers (Adam with learning rate scheduling)
+    - Early stopping
+    - Model checkpointing

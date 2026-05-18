@@ -42,3 +42,14 @@ def main():
             "Processing continues"
         ],
         context_size=200
+    )
+    print(f"   Signal Quality: {result2['signal_quality']}")
+    print(f"   Coherence: {result2['metrics']['coherence']:.3f}")
+    print(f"   Contradictions: {result2['metrics']['contradictions_count']}")
+    assert result2['metrics']['contradictions_count'] > 0, "Should detect contradiction"
+    print(f"   [OK] Contradiction detected")
+    
+    # Test scaling analysis
+    print("\n4. Testing scaling analysis...")
+    for size in [500, 1000]:
+        framework.process_operation(

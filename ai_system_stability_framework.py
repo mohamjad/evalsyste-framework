@@ -251,3 +251,14 @@ class CoherenceTracker:
         
         # Antonym patterns
         opposites = [
+            ("is stable", "is unstable"), ("is stable", "is not stable"),
+            ("increased", "decreased"), ("increased", "reduced"),
+            ("true", "false"), ("succeeded", "failed"),
+            ("working", "broken"), ("correct", "incorrect"),
+        ]
+        
+        for opp1, opp2 in opposites:
+            if opp1 in content1 and opp2 in content2:
+                return True, f"lexical antonym: '{opp1}' vs '{opp2}'"
+            if opp2 in content1 and opp1 in content2:
+                return True, f"lexical antonym: '{opp2}' vs '{opp1}'"

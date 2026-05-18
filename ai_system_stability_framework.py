@@ -570,3 +570,14 @@ class SignalMetricsCalculator:
         Calculate context efficiency ratio.
         
         Formula: (current_signal / current_context) / (baseline_signal / baseline_context)
+        
+        Interpretation:
+        - >1.0 = AMPLIFYING (scale helps) [GOOD]
+        - ~1.0 = MAINTAINING (scale neutral)
+        - <1.0 = DEGRADING (scale hurts) [BAD]
+        """
+        if self.baseline_signal is None or self.baseline_context is None:
+            # Set baseline if not set
+            self.baseline_signal = current_coherence
+            self.baseline_context = current_context
+            self.logger.logger.info(f"Setting baseline: signal={current_coherence}, context={current_context}")

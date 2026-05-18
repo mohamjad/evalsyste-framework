@@ -9,3 +9,14 @@ Date: February 7, 2026
 """
 
 import logging
+import time
+from dataclasses import dataclass, field
+from typing import List, Dict, Optional, Tuple, Any
+from collections import defaultdict
+import math
+
+# Optional advanced modules
+try:
+    from semantic_analyzer import SemanticAnalyzer
+    SEMANTIC_AVAILABLE = True
+except ImportError:

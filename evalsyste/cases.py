@@ -53,3 +53,4 @@ def load_builtin_cases() -> tuple[EvalCase, ...]:
                 EvidenceItem("release-plan", "rollback plan"),
             ),
         ),
+    )

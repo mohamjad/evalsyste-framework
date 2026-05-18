@@ -20,3 +20,5 @@ class EvalRunner:
         return {"answer": answer, "result": result}
 
     def run_suite(self, agent: AgentFn, cases: tuple[EvalCase, ...]) -> EvalReport:
+        results = tuple(self.run_case(agent, case)["result"] for case in cases)
+        return EvalReport(results=results)

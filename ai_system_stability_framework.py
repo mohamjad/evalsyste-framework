@@ -372,3 +372,14 @@ class SignalMetricsCalculator:
                     import os
                     if os.path.exists("models/clarity_model.pt"):
                         checkpoint = torch.load("models/clarity_model.pt", map_location='cpu')
+                        self.neural_clarity_model.load_state_dict(checkpoint['model_state_dict'])
+                    if os.path.exists("models/redundancy_model.pt"):
+                        checkpoint = torch.load("models/redundancy_model.pt", map_location='cpu')
+                        self.neural_redundancy_model.load_state_dict(checkpoint['model_state_dict'])
+                except Exception:
+                    pass
+            except Exception:
+                pass
+    
+    def calculate_clarity_score(self, statements: List[Statement]) -> float:
+        """

@@ -31,3 +31,6 @@ def score_nonverifiable_answer(case: EvalCase, answer: str, threshold: float = 0
         case_id=case.id,
         score=score,
         passed=score >= threshold,
+        metrics=metrics,
+        notes=tuple(notes),
+    )

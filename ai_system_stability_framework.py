@@ -911,3 +911,14 @@ class AIStabilityFramework:
             self.thresholds.update(custom_thresholds)
         
         # Initialize components (with semantic analysis enabled)
+        self.coherence_tracker = CoherenceTracker(self.logger, use_semantic=True)
+        self.signal_metrics = SignalMetricsCalculator(self.logger, self.coherence_tracker)
+        self.context_analyzer = ContextWindowAnalyzer(self.logger)
+        
+        # Self-verification
+        self.verifier = SelfVerifier(self.logger)
+        self.verified = self.verifier.run_all_tests()
+        
+        if not self.verified:
+            raise RuntimeError(
+                "Framework self-verification failed. "

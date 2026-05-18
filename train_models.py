@@ -141,3 +141,14 @@ def train_clarity_model(data_path: str, epochs: int = 50):
         "stuff occurred",
     ]
     scores = [0.9, 0.3, 0.95, 0.2]
+    
+    # Initialize encoder
+    encoder = SemanticAnalyzer(use_embeddings=True)
+    if not encoder.model:
+        print("Error: sentence-transformers not available")
+        return
+    
+    # Create dataset
+    dataset = ClarityDataset(statements, scores, encoder.model)
+    train_size = int(0.8 * len(dataset))
+    val_size = len(dataset) - train_size

@@ -163,3 +163,14 @@ def example_4_continuous_monitoring():
     print("\n" + "=" * 60)
     print("Example 4: Continuous Monitoring")
     print("=" * 60)
+    
+    framework = AIStabilityFramework(log_file="example4.log", log_level="INFO")
+    
+    # Simulate a long-running process
+    print("\nSimulating 10 operations...")
+    degradation_detected = False
+    
+    for operation_num in range(10):
+        # Simulate AI system doing something
+        statements = [
+            f"Processing operation {operation_num}",

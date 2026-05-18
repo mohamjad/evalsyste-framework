@@ -86,3 +86,14 @@ class BayesianOptimizer:
     def _point_to_vector(self, point: Dict[str, float]) -> np.ndarray:
         """Convert point dict to vector for GP."""
         return np.array([point[p.name] for p in self.space])
+    
+    def _vector_to_point(self, vector: np.ndarray) -> Dict[str, float]:
+        """Convert vector to point dict."""
+        point = {}
+        for i, param in enumerate(self.space):
+            val = float(vector[i])
+            # Clip to bounds
+            val = max(param.min_val, min(param.max_val, val))
+            if param.param_type == 'discrete':
+                val = round(val)
+            point[param.name] = val

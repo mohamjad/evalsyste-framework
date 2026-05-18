@@ -42,3 +42,14 @@ def load_builtin_cases() -> tuple[EvalCase, ...]:
                 "plan is missing."
             ),
             intent="avoid calling a partially verified deployment fully safe",
+            criteria=NONVERIFIABLE_CRITERIA,
+            references=(
+                "tests passed",
+                "rollback plan is missing",
+                "deployment is not fully verified",
+            ),
+            evidence=(
+                EvidenceItem("ci", "tests passed"),
+                EvidenceItem("release-plan", "rollback plan"),
+            ),
+        ),

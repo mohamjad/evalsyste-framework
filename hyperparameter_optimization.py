@@ -97,3 +97,14 @@ class BayesianOptimizer:
             if param.param_type == 'discrete':
                 val = round(val)
             point[param.name] = val
+        return point
+    
+    def _expected_improvement(self, X_candidate: np.ndarray, xi: float = 0.01) -> np.ndarray:
+        """
+        Calculate Expected Improvement acquisition function.
+        
+        EI(x) = (μ(x) - f_best - ξ) * Φ(Z) + σ(x) * φ(Z)
+        where Z = (μ(x) - f_best - ξ) / σ(x)
+        """
+        if not self.gp or len(self.y) == 0:
+            return np.ones(len(X_candidate))

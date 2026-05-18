@@ -119,3 +119,14 @@ CONTRADICTION DETECTED
 Statement 1: "{stmt1.content}" (at {stmt1.timestamp})
 Statement 2: "{stmt2.content}" (at {stmt2.timestamp})
 Reason: {reason}
+Context sizes: {stmt1.context_size} vs {stmt2.context_size}
+"""
+        self.logger.warning(msg)
+    
+    def log_threshold_check(self, metric_name: str, value: float, threshold: float, passed: bool):
+        """Log threshold checking."""
+        status = "PASS" if passed else "FAIL"
+        msg = f"""
+Threshold Check: {metric_name}
+Value: {value}
+Threshold: {threshold}

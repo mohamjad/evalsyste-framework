@@ -152,3 +152,14 @@ def example_integration():
         base_system,
         log_file="integration_example.log"
     )
+    
+    # Process some inputs
+    print("\nProcessing inputs...")
+    inputs = [
+        "What is the weather?",
+        "Tell me about AI systems",
+        "How does machine learning work?",
+    ]
+    
+    for inp in inputs:
+        response = monitored_system.process(inp)

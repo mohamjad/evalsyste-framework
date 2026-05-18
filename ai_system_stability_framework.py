@@ -922,3 +922,14 @@ class AIStabilityFramework:
         if not self.verified:
             raise RuntimeError(
                 "Framework self-verification failed. "
+                "Cannot proceed - framework has errors."
+            )
+        
+        # Operation tracking
+        self.operation_count = 0
+        self.operations: List[Dict[str, Any]] = []
+        
+        self.logger.logger.info("Framework initialized successfully")
+    
+    def process_operation(self, operation_description: str,
+                         statements: List[str],

@@ -680,3 +680,14 @@ class ContextWindowAnalyzer:
         
         if len(efficiencies) < 2:
             return {
+                "trend": "INSUFFICIENT_DATA",
+                "recommendation": "Cannot calculate efficiency trends",
+                "statistical_significance": False
+            }
+        
+        # Statistical trend analysis if available
+        trend_stats = {}
+        if self.statistical_analyzer and len(coherence_values) >= 3:
+            try:
+                trend_stats = self.statistical_analyzer.analyze_trend(
+                    coherence_values, 

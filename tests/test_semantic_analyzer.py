@@ -9,3 +9,14 @@ def test_lexical_contradiction_detects_antonyms():
 
     is_contradiction, confidence, reason = analyzer.detect_contradiction(
         "The system is stable",
+        "The system is unstable",
+    )
+
+    assert is_contradiction is True
+    assert confidence > 0.6
+    assert "stable" in reason or "unstable" in reason
+
+
+def test_redundancy_increases_for_duplicate_text():
+    """Repeated content should look more redundant than distinct content."""
+    analyzer = SemanticAnalyzer(use_embeddings=False)

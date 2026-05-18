@@ -20,3 +20,14 @@ class Criterion:
     max_score: float = 1.0
 
     def normalize(self, score: float) -> float:
+        if self.max_score <= self.min_score:
+            raise ValueError("max_score must be greater than min_score")
+        clipped = min(max(score, self.min_score), self.max_score)
+        return (clipped - self.min_score) / (self.max_score - self.min_score)
+
+
+@dataclass(frozen=True)
+class EvidenceItem:
+    """Evidence that can support or attack a model answer."""
+
+    source: str

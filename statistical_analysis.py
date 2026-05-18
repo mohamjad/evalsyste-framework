@@ -97,3 +97,14 @@ class StatisticalAnalyzer:
         var2 = statistics.variance(sample2) if n2 > 1 else 0.0
         
         # Welch's t-test statistic
+        std_error = math.sqrt(var1/n1 + var2/n2)
+        if std_error == 0:
+            return False, 1.0, "zero variance"
+        
+        t_statistic = (mean1 - mean2) / std_error
+        
+        # Degrees of freedom (Welch-Satterthwaite equation)
+        df = ((var1/n1 + var2/n2)**2) / ((var1/n1)**2/(n1-1) + (var2/n2)**2/(n2-1))
+        df = max(1, int(df))
+        
+        # Approximate p-value using t-distribution

@@ -141,3 +141,14 @@ class CoherenceTracker:
     Tracks logical consistency across all system assertions.
 
     By default this is a heuristic contradiction tracker with optional
+    embedding and model-assisted paths when those dependencies are available.
+    """
+    
+    def __init__(self, logger: AuditLogger, use_semantic: bool = True):
+        self.logger = logger
+        self.statements: List[Statement] = []
+        self.contradictions: List[Contradiction] = []
+        
+        # Initialize semantic analyzer if available
+        self.semantic_analyzer = None
+        if use_semantic and SEMANTIC_AVAILABLE:

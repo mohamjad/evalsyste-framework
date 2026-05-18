@@ -42,3 +42,14 @@ class EvalCase:
 
     id: str
     prompt: str
+    intent: str
+    criteria: tuple[Criterion, ...]
+    references: tuple[str, ...] = ()
+    evidence: tuple[EvidenceItem, ...] = ()
+    metadata: dict[str, Any] = field(default_factory=dict)
+
+
+@dataclass(frozen=True)
+class ModelTurn:
+    """One model answer in a session."""
+

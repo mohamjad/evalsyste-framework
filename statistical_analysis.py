@@ -218,3 +218,14 @@ class StatisticalAnalyzer:
         
         More robust for non-normal distributions.
         """
+        if not values or len(values) < 2:
+            return 0.0, 0.0, 0.0
+        
+        import random
+        
+        n = len(values)
+        bootstrap_means = []
+        
+        for _ in range(n_bootstrap):
+            # Resample with replacement
+            sample = random.choices(values, k=n)

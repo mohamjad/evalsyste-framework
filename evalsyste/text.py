@@ -31,3 +31,14 @@ def coverage_score(answer: str, references: tuple[str, ...]) -> float:
 
 
 def lexical_entropy(text: str) -> float:
+    tokens = tokenize(text)
+    if not tokens:
+        return 0.0
+    counts = Counter(tokens)
+    total = len(tokens)
+    entropy = -sum((count / total) * math.log2(count / total) for count in counts.values())
+    max_entropy = math.log2(len(counts)) if len(counts) > 1 else 1.0
+    return entropy / max_entropy
+
+
+def contradiction_flags(text: str) -> tuple[str, ...]:

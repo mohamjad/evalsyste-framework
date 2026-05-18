@@ -64,3 +64,14 @@ def example_1_detecting_degradation():
             "Weather is rainy"  # ANOTHER CONTRADICTION!
         ],
         context_size=2000
+    )
+    print(f"   Signal Quality: {result3['signal_quality']}")
+    print(f"   Coherence: {result3['metrics']['coherence']:.3f}")
+    print(f"   Contradictions: {result3['metrics']['contradictions_count']}")
+    
+    print("\n" + framework.generate_stability_report())
+
+
+def example_2_scaling_validation():
+    """Example: Validating that adding context actually helps."""
+    print("\n" + "=" * 60)

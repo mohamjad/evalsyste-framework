@@ -801,3 +801,14 @@ class SelfVerifier:
     
     def test_coherence_calculation(self):
         """Test coherence calculation with known input."""
+        # Create a simple coherence tracker for testing
+        # Use a temporary file for Windows compatibility
+        import tempfile
+        import os
+        temp_file = tempfile.NamedTemporaryFile(delete=False)
+        temp_file.close()
+        test_logger = AuditLogger(log_file=temp_file.name, log_level="ERROR")
+        tracker = CoherenceTracker(test_logger)
+        
+        # Add statements that should create specific coherence
+        # 4 statements, if we add 1 contradiction, coherence should be:

@@ -251,3 +251,14 @@ class RedundancyDetectionModel(nn.Module):
         for i in range(len(statement_embeddings)):
             for j in range(i + 1, len(statement_embeddings)):
                 emb1 = statement_embeddings[i]
+                emb2 = statement_embeddings[j]
+                
+                cos_sim = F.cosine_similarity(emb1.unsqueeze(0), emb2.unsqueeze(0))
+                combined = torch.cat([emb1, emb2, cos_sim.unsqueeze(0)])
+                
+                sim_score = self.pairwise_net(combined.unsqueeze(0))
+                similarities.append(sim_score)
+        
+        if not similarities:
+            return torch.tensor(0.0)
+        

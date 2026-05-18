@@ -207,3 +207,14 @@ class StatisticalAnalyzer:
             "slope": slope,
             "intercept": intercept,
             "correlation": correlation,
+            "p_value": p_value,
+            "is_significant": is_significant,
+            "n": n
+        }
+    
+    def bootstrap_confidence_interval(self, values: List[float], n_bootstrap: int = 1000) -> Tuple[float, float, float]:
+        """
+        Calculate confidence interval using bootstrap resampling.
+        
+        More robust for non-normal distributions.
+        """

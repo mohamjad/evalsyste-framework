@@ -42,3 +42,14 @@ class ContradictionDataset(Dataset):
     def __len__(self):
         return len(self.pairs)
     
+    def __getitem__(self, idx):
+        sent1, sent2 = self.pairs[idx]
+        label = self.labels[idx]
+        
+        # Encode sentences
+        emb1 = torch.tensor(self.encoder.encode([sent1])[0], dtype=torch.float32)
+        emb2 = torch.tensor(self.encoder.encode([sent2])[0], dtype=torch.float32)
+        label_tensor = torch.tensor(label, dtype=torch.float32)
+        
+        return emb1, emb2, label_tensor
+

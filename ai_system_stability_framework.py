@@ -878,3 +878,14 @@ class SelfVerifier:
 
 class AIStabilityFramework:
     """
+    Main framework class that orchestrates all components.
+    
+    Usage:
+        framework = AIStabilityFramework(log_file="stability.log")
+        result = framework.process_operation(
+            operation_description="Processing query",
+            statements=["Statement 1", "Statement 2"],
+            context_size=500
+        )
+    """
+    

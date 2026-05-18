@@ -53,3 +53,14 @@ class SemanticAnalyzer:
         self.antonym_patterns = [
             ("increase", "decrease"), ("increase", "reduce"), ("increase", "decline"),
             ("stable", "unstable"), ("stable", "volatile"), ("stable", "erratic"),
+            ("succeed", "fail"), ("success", "failure"), ("working", "broken"),
+            ("correct", "incorrect"), ("correct", "wrong"), ("true", "false"),
+            ("positive", "negative"), ("good", "bad"), ("high", "low"),
+            ("fast", "slow"), ("large", "small"), ("more", "less"),
+            ("enable", "disable"), ("allow", "prevent"), ("accept", "reject"),
+        ]
+        
+        # Negation markers
+        self.negation_words = ["not", "no", "never", "none", "neither", "nobody", "nothing"]
+    
+    def detect_contradiction(self, text1: str, text2: str) -> Tuple[bool, float, str]:

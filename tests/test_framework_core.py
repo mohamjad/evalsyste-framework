@@ -53,3 +53,5 @@ def test_report_includes_recent_operations(tmp_path):
 
     report = framework.generate_stability_report()
 
+    assert "AI SYSTEM STABILITY REPORT" in report
+    assert "reportable operation" in report

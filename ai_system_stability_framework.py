@@ -735,3 +735,14 @@ class ContextWindowAnalyzer:
             "efficiencies": efficiencies,
             "snapshots_count": len(self.snapshots),
             "statistical_significance": trend_stats.get("is_significant", False),
+            "p_value": trend_stats.get("p_value", None),
+            "correlation": trend_stats.get("correlation", None),
+        }
+        
+        if "efficiency_ci" in trend_stats:
+            result["efficiency_confidence_interval"] = trend_stats["efficiency_ci"]
+        
+        self.logger.logger.info(
+            f"Scaling analysis: trend={trend}, "
+            f"significant={result['statistical_significance']}, "
+            f"p={result.get('p_value', 'N/A')}"

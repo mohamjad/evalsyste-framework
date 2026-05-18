@@ -108,3 +108,14 @@ class SemanticAnalyzer:
         """
         score = 0.0
         reasons = []
+        
+        # Check for antonym pairs
+        for ant1, ant2 in self.antonym_patterns:
+            has_ant1_in_1 = ant1 in text1
+            has_ant2_in_2 = ant2 in text2
+            has_ant2_in_1 = ant2 in text1
+            has_ant1_in_2 = ant1 in text2
+            
+            if (has_ant1_in_1 and has_ant2_in_2) or (has_ant2_in_1 and has_ant1_in_2):
+                score = max(score, 0.8)
+                reasons.append(f"antonym pair: '{ant1}' vs '{ant2}'")

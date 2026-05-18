@@ -20,3 +20,14 @@ class IntentDriftReport:
     def stable(self) -> bool:
         return self.drift_score <= 0.35
 
+
+def _mean(values: list[float]) -> float:
+    return sum(values) / len(values) if values else 0.0
+
+
+def score_intent_drift(trace: SessionTrace) -> IntentDriftReport:
+    if not trace.turns:
+        return IntentDriftReport(trace.id, 0.0, 0.0, 0.0, 1.0)
+    anchor = trace.target_intent
+    anchor_similarity = _mean(
+        [jaccard_similarity(anchor, turn.prompt + " " + turn.response) for turn in trace.turns]

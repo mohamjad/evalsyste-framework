@@ -86,3 +86,14 @@ class MonitoredAISystem:
         elif isinstance(response, str):
             # If response is a string, split into sentences
             statements = [s.strip() for s in response.split('.') if s.strip()]
+        elif hasattr(response, 'text'):
+            # If response has a text attribute
+            statements = [response.text]
+        else:
+            # Fallback: convert to string
+            statements = [str(response)]
+        
+        return statements
+    
+    def _get_context_size(self) -> int:
+        """

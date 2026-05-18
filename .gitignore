@@ -31,3 +31,5 @@ stability.log
 # Trained models
 models/
 *.pt
+*.pth
+*.ckpt

@@ -20,3 +20,14 @@ ENV/
 *.swo
 
 # OS
+.DS_Store
+Thumbs.db
+
+# Test outputs
+test.log
+example*.log
+stability.log
+
+# Trained models
+models/
+*.pt

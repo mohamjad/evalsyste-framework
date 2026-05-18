@@ -20,3 +20,14 @@ def baseline_agent(prompt: str, metadata: dict) -> str:
     )
 
 
+def run_builtin(args: argparse.Namespace) -> int:
+    report = EvalRunner(threshold=args.threshold).run_suite(baseline_agent, load_builtin_cases())
+    payload = {
+        "score": report.score,
+        "pass_rate": report.pass_rate,
+        "results": [
+            {
+                "case_id": result.case_id,
+                "score": result.score,
+                "passed": result.passed,
+                "metrics": result.metrics,

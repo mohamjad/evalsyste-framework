@@ -86,3 +86,14 @@ class AuditLogger:
         # File handler
         handler = logging.FileHandler(log_file)
         formatter = logging.Formatter(
+            '[%(asctime)s] [%(levelname)s] [%(name)s]\n'
+            '%(message)s\n'
+        )
+        handler.setFormatter(formatter)
+        self.logger.addHandler(handler)
+        
+        # Console handler for visibility
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(formatter)
+        self.logger.addHandler(console_handler)
+    

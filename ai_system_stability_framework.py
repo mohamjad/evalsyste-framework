@@ -405,3 +405,14 @@ class SignalMetricsCalculator:
             # Try neural model first if available
             if self.neural_clarity_model and NEURAL_AVAILABLE and self.semantic_analyzer and self.semantic_analyzer.model:
                 try:
+                    emb = self.semantic_analyzer.model.encode([content])[0]
+                    emb_tensor = torch.tensor(emb).unsqueeze(0)
+                    clarity = self.neural_clarity_model.predict(emb_tensor)
+                    scores.append(clarity)
+                    continue
+                except Exception:
+                    pass
+            
+            # Fallback to information-theoretic method
+            # Information content using Shannon entropy
+            info_content = 0.5  # Default

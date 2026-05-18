@@ -20,3 +20,14 @@ except ImportError:
     AutoTokenizer = None
     AutoModel = None
 
+
+class ContradictionDetectionModel(nn.Module):
+    """
+    Neural network for contradiction detection.
+    
+    Architecture:
+    - Sentence encoder (BERT-based or MLP)
+    - Interaction layer (concatenation + MLP)
+    - Classification head (binary: contradiction or not)
+    
+    Can be trained end-to-end on contradiction datasets.

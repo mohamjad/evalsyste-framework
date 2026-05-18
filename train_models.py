@@ -174,3 +174,14 @@ def train_clarity_model(data_path: str, epochs: int = 50):
             output = model(emb)
             loss = criterion(output.squeeze(), target)
             loss.backward()
+            trainer.optimizer.step()
+            total_loss += loss.item()
+        print(f"Epoch {epoch+1}/{epochs}, Loss: {total_loss/len(train_loader):.4f}")
+    
+    # Save
+    os.makedirs("models", exist_ok=True)
+    torch.save({
+        'model_state_dict': model.state_dict(),
+        'optimizer_state_dict': trainer.optimizer.state_dict(),
+    }, "models/clarity_model.pt")
+    print("Model saved")

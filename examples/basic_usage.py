@@ -9,3 +9,14 @@ import os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from ai_system_stability_framework import AIStabilityFramework
+
+
+def example_1_detecting_degradation():
+    """Example: Detecting when context causes degradation."""
+    print("=" * 60)
+    print("Example 1: Detecting Context Degradation")
+    print("=" * 60)
+    
+    framework = AIStabilityFramework(log_file="example1.log", log_level="INFO")
+    
+    # Small context - should be coherent

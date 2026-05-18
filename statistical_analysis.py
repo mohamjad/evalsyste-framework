@@ -229,3 +229,14 @@ class StatisticalAnalyzer:
         for _ in range(n_bootstrap):
             # Resample with replacement
             sample = random.choices(values, k=n)
+            bootstrap_means.append(statistics.mean(sample))
+        
+        bootstrap_means.sort()
+        
+        # Calculate percentiles
+        lower_percentile = (self.alpha / 2) * 100
+        upper_percentile = (1 - self.alpha / 2) * 100
+        
+        lower_idx = int(lower_percentile / 100 * n_bootstrap)
+        upper_idx = int(upper_percentile / 100 * n_bootstrap)
+        

@@ -64,3 +64,14 @@ class BayesianOptimizer:
                 kernel=kernel,
                 n_restarts_optimizer=10,
                 alpha=1e-6
+            )
+    
+    def _random_sample(self) -> Dict[str, float]:
+        """Sample random point from space."""
+        point = {}
+        for param in self.space:
+            if param.log_scale:
+                min_log = math.log(param.min_val)
+                max_log = math.log(param.max_val)
+                val = math.exp(random.uniform(min_log, max_log))
+            else:

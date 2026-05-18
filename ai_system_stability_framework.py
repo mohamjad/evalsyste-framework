@@ -350,3 +350,14 @@ class SignalMetricsCalculator:
                 self.statistical_analyzer = StatisticalAnalyzer(confidence_level=0.95)
                 self.logger.logger.info("Statistical analyzer initialized")
             except Exception as e:
+                self.logger.logger.warning(f"Could not initialize statistical analyzer: {e}")
+        
+        # Initialize semantic analyzer for redundancy
+        self.semantic_analyzer = None
+        if SEMANTIC_AVAILABLE:
+            try:
+                self.semantic_analyzer = SemanticAnalyzer(use_embeddings=True)
+            except Exception:
+                pass
+        
+        # Initialize neural models if available

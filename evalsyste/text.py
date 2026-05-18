@@ -9,3 +9,14 @@ from collections import Counter
 
 TOKEN_RE = re.compile(r"[a-zA-Z0-9_]+")
 
+
+def tokenize(text: str) -> tuple[str, ...]:
+    return tuple(match.group(0).lower() for match in TOKEN_RE.finditer(text))
+
+
+def jaccard_similarity(left: str, right: str) -> float:
+    left_tokens = set(tokenize(left))
+    right_tokens = set(tokenize(right))
+    if not left_tokens and not right_tokens:
+        return 1.0
+    if not left_tokens or not right_tokens:

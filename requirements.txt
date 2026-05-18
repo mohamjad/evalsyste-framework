@@ -9,3 +9,13 @@ sentence-transformers>=2.2.0
 # Install with: pip install torch
 torch>=2.0.0
 
+# Optional: Bayesian optimization
+# Install with: pip install scikit-learn
+scikit-learn>=1.0.0
+
+# Optional: For better performance
+numpy>=1.21.0
+
+# Development dependencies (optional)
+# pytest>=7.0.0
+# black>=22.0.0

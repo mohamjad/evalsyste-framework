@@ -31,3 +31,14 @@ class SemanticAnalyzer:
     3. Information-theoretic measures
     """
     
+    def __init__(self, use_embeddings: bool = True):
+        """
+        Initialize semantic analyzer.
+        
+        Args:
+            use_embeddings: If True and sentence-transformers available, use embeddings
+        """
+        self.use_embeddings = use_embeddings and SEMANTIC_AVAILABLE
+        self.model = None
+        
+        if self.use_embeddings:

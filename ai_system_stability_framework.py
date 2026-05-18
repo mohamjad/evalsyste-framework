@@ -185,3 +185,14 @@ class CoherenceTracker:
             content=content,
             timestamp=time.time(),
             context_size=context_size,
+            confidence=confidence,
+            operation_id=operation_id
+        )
+        
+        self.logger.logger.debug(f"Adding statement: '{content}'")
+        
+        # Check against existing statements
+        for existing in self.statements:
+            is_contradiction, reason = self._check_contradiction(stmt, existing)
+            if is_contradiction:
+                contradiction = Contradiction(

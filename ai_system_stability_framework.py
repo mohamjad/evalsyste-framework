@@ -1065,3 +1065,14 @@ Recent Operations:
             for contr in self.coherence_tracker.contradictions[-5:]:  # Last 5
                 report += f"  - {contr.statement1.content} vs {contr.statement2.content}\n"
         
+        report += "\n=== END REPORT ===\n"
+        
+        return report
+
+
+if __name__ == "__main__":
+    # Example usage
+    print("AI System Stability Framework - Self Verification")
+    print("=" * 50)
+    
+    framework = AIStabilityFramework(log_file="stability.log", log_level="INFO")
